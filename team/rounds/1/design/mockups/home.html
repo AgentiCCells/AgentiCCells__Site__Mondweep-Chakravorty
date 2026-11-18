@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mock-up: home, first screen (Ledger, the default)</title>
+<!-- Mock-up only (designer, round 1). Words are from the brief; final copy comes from data/ via the writer. -->
+<style>
+:root{
+  --bg:#FAF8F4; --surface:#FFFFFF; --ink:#1C1B19; --muted:#4A4740; --rule:#DDD8CE;
+  --accent:#1D5C63; --on-accent:#FFFFFF; --focus:#B4531A;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+  --s1:.25rem;--s2:.5rem;--s3:1rem;--s4:1.5rem;--s5:2.5rem;--s6:4rem;
+  --measure:38rem;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:1.0625rem/1.6 var(--sans)}
+a{color:var(--accent);text-underline-offset:.2em}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:2px}
+.skip{position:absolute;left:-999px}.skip:focus{left:var(--s3);top:var(--s3);background:var(--surface);padding:var(--s2)}
+.wrap{max-width:72rem;margin:0 auto;padding:0 var(--s3)}
+header{border-bottom:1px solid var(--rule)}
+.bar{display:flex;align-items:center;gap:var(--s3);min-height:3.5rem}
+.name{font-weight:700;text-decoration:none;color:var(--ink);margin-right:auto;min-height:44px;display:flex;align-items:center}
+nav ul{display:flex;gap:var(--s3);list-style:none;margin:0;padding:0}
+nav a{display:flex;align-items:center;min-height:44px;color:var(--ink);text-decoration:none}
+nav a[aria-current]{text-decoration:underline;text-decoration-thickness:2px}
+.btn{white-space:nowrap;font:inherit;min-height:44px;padding:0 var(--s3);border-radius:999px;border:1px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;display:inline-flex;align-items:center;gap:var(--s2)}
+.menu{display:none}
+.hero{display:grid;grid-template-columns:1fr 15rem;gap:var(--s5);align-items:center;padding:var(--s6) 0 var(--s5)}
+.eyebrow{font:600 .8125rem/1.4 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 var(--s2)}
+h1{font-size:clamp(2.5rem,6vw,4rem);line-height:1.05;margin:0 0 var(--s3);letter-spacing:-.02em}
+.lede{font-size:1.25rem;max-width:var(--measure);margin:0 0 var(--s4)}
+sup a{font:600 .75rem var(--sans);text-decoration:none;padding:0 .15em}
+.cta{display:flex;flex-wrap:wrap;gap:var(--s2)}
+.primary{background:var(--accent);color:var(--on-accent);border-color:var(--accent);text-decoration:none;border-radius:6px}
+.secondary{border-radius:6px;text-decoration:none}
+.mono{width:15rem;aspect-ratio:1;border-radius:50%;background:var(--accent);color:var(--on-accent);display:grid;place-items:center;font:700 5.5rem/1 var(--sans);letter-spacing:-.04em}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3);border-top:1px solid var(--rule);padding:var(--s4) 0;margin:0;list-style:none}
+.facts li{font-size:.9375rem;color:var(--muted)} .facts b{display:block;color:var(--ink);font-size:1rem}
+dialog{border:1px solid var(--rule);border-radius:12px;padding:var(--s4);max-width:min(56rem,calc(100vw - 2rem));background:var(--surface);color:var(--ink)}
+dialog::backdrop{background:rgb(0 0 0/.5)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(14rem,1fr));gap:var(--s3);list-style:none;padding:0}
+.card a{display:block;color:var(--ink);text-decoration:none;border:1px solid var(--rule);border-radius:8px;padding:var(--s2)}
+.thumb{aspect-ratio:1366/800;border-radius:4px;display:grid;place-items:center;font:700 1.25rem var(--sans)}
+.card b{display:block;margin-top:var(--s2)} .card span{font-size:.875rem;color:var(--muted)}
+@media (max-width:52rem){
+  .name{font-size:.9375rem;line-height:1.2} .bar{gap:var(--s2)}
+  nav{display:none} .menu{display:inline-flex}
+  .hero{grid-template-columns:1fr;gap:var(--s4);padding:var(--s4) 0}
+  .mono{width:5rem;font-size:1.875rem;order:-1}
+  .lede{font-size:1.125rem}
+  .facts{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header><div class="wrap bar">
+  <a class="name" href="/">Mondweep Chakravorty</a>
+  <nav aria-label="Main"><ul>
+    <li><a href="/built/">What he has built</a></li>
+    <li><a href="/proof-of-concept/">Proof of concept</a></li>
+    <li><a href="/experience/">Experience</a></li>
+    <li><a href="/agentics-london/">Agentics London</a></li>
+    <li><a href="/collaboration/">With Dinis Cruz</a></li>
+  </ul></nav>
+  <button class="btn" type="button" onclick="document.getElementById('designs').showModal()" aria-haspopup="dialog">&#9638; Designs</button>
+  <a class="btn menu" href="#site-index">Menu</a>
+</div></header>
+<main id="main" class="wrap">
+  <section class="hero" aria-labelledby="h">
+    <div>
+      <p class="eyebrow">Enterprise AI leader, London</p>
+      <h1 id="h">Mondweep Chakravorty</h1>
+      <p class="lede">Builds and advises on agentic AI systems through DxSure Ltd, after two decades in financial services, automotive, energy and technology.<sup><a href="#src-1" aria-label="Source 1">1</a></sup></p>
+      <div class="cta">
+        <a class="btn primary" href="/proof-of-concept/">See the proof of concept</a>
+        <a class="btn secondary" href="/collaboration/">Work with him</a>
+      </div>
+    </div>
+    <div class="mono" role="img" aria-label="Monogram MC">MC</div>
+  </section>
+  <ul class="facts">
+    <li><b>SGit x Ruflo</b>Agent memory saved, deleted, restored with the same fingerprint.<sup><a href="#src-2">2</a></sup></li>
+    <li><b>Agentics Foundation</b>Co-founder of the London chapter.<sup><a href="#src-1">1</a></sup></li>
+    <li><b>ruv.sgit.ai</b>One of the two founding providers, with Dinis Cruz.<sup><a href="#src-3">3</a></sup></li>
+  </ul>
+</main>
+<dialog id="designs" aria-labelledby="dh">
+  <h2 id="dh">Designs</h2>
+  <p>The same facts and sources, laid out five ways. <a href="/d/">All designs</a></p>
+  <ul class="cards">
+    <li class="card"><a href="/"><div class="thumb" style="background:#FAF8F4;color:#1D5C63;border:1px solid #DDD8CE">Ledger</div><b>Ledger (default)</b><span>A calm consultancy page.</span></a></li>
+    <li class="card"><a href="/d/broadsheet/"><div class="thumb" style="background:#F4F1EA;color:#9B1C1C;font-family:Georgia,serif">Broadsheet</div><b>Broadsheet</b><span>A newspaper profile.</span></a></li>
+    <li class="card"><a href="/d/runlog/"><div class="thumb" style="background:#0E1116;color:#7EE2A8;font-family:monospace">$ runlog</div><b>Run log</b><span>The site as a terminal session.</span></a></li>
+    <li class="card"><a href="/d/blueprint/"><div class="thumb" style="background:#0F2A4A;color:#F2F7FF">Blueprint</div><b>Blueprint</b><span>An engineering drawing.</span></a></li>
+    <li class="card"><a href="/d/vault/"><div class="thumb" style="background:#13201C;color:#D9B26A;font-family:Georgia,serif">Vault</div><b>Vault</b><span>Sealed, checked, restored.</span></a></li>
+  </ul>
+  <form method="dialog"><button class="btn">Close</button></form>
+</dialog>
+</body>
+</html>

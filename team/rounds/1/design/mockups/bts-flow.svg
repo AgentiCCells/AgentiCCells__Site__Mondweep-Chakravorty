@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 620" role="img" aria-labelledby="t" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif">
+<title id="t">Mock-up: the flow of one round, phone layout (stacks top to bottom; at 1366 px the same nine boxes run left to right in two rows)</title>
+<style>.b{fill:#FFFFFF;stroke:#1D5C63}.r{fill:#E4EEEF;stroke:#1D5C63}.t{font-size:14px;fill:#1C1B19}.n{font:700 13px ui-monospace,Menlo,Consolas,monospace;fill:#1D5C63}.l{stroke:#1D5C63;stroke-width:2}</style>
+<rect width="360" height="620" fill="#FAF8F4"/>
+<g>
+<rect class="b" x="40" y="10" width="280" height="50" rx="8"/><text class="n" x="56" y="40">1</text><text class="t" x="80" y="40">Brief: conductor</text>
+<rect class="b" x="40" y="76" width="280" height="50" rx="8"/><text class="n" x="56" y="106">2</text><text class="t" x="80" y="106">Research: researcher</text>
+<rect class="b" x="40" y="142" width="280" height="50" rx="8"/><text class="n" x="56" y="172">3</text><text class="t" x="80" y="172">Design proposal: designer</text>
+<rect class="r" x="40" y="208" width="280" height="50" rx="8"/><text class="n" x="56" y="238">4</text><text class="t" x="80" y="238">Design review: reviewer</text>
+<rect class="b" x="40" y="274" width="280" height="50" rx="8"/><text class="n" x="56" y="304">5</text><text class="t" x="80" y="304">Copy: writer</text>
+<rect class="b" x="40" y="340" width="280" height="50" rx="8"/><text class="n" x="56" y="370">6</text><text class="t" x="80" y="370">Build: developer</text>
+<rect class="b" x="40" y="406" width="280" height="50" rx="8"/><text class="n" x="56" y="436">7</text><text class="t" x="80" y="436">Release (gates): conductor</text>
+<rect class="r" x="40" y="472" width="280" height="50" rx="8"/><text class="n" x="56" y="502">8</text><text class="t" x="80" y="502">Live review: reviewer</text>
+<rect class="b" x="40" y="538" width="280" height="50" rx="8"/><text class="n" x="56" y="568">9</text><text class="t" x="80" y="568">Round report: conductor</text>
+</g>
+<path class="l" fill="none" d="M40 497 H20 V365 H40"/><text class="t" x="4" y="610" font-size="12">Left loop: a live failure returns to build (step 6)</text>
+</svg>
