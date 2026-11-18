@@ -6,15 +6,51 @@
 // - Every factual sentence is an object { text, src } where src is an array of ids in SOURCES.
 // - Each SOURCES id maps to the facts in research/facts.json it backs (field `facts`), so the reviewer can check.
 // - Prices are numbers in GBP excluding VAT, exactly as ruv.sgit.ai publishes them; `priceText` is how to print them.
-// - People named: Mondweep Chakravorty, Dinis Cruz and rUv only. Nothing here comes from the long draft bio
-//   in ruv.sgit.ai/data/providers.json (`bio_long`, `specialisms`), which he has not approved.
+// - People named: Mondweep Chakravorty, Dinis Cruz and rUv only. Organisations only as the sources name them.
+// - The long bio in ruv.sgit.ai/data/providers.json (facts F09 to F12 and F14) is used in CAREER, HOME.career
+//   and the /experience/ page, worded as that source gives it and cited to 'providers-data'. Dinis Cruz cleared
+//   it for this site on 2026-11-18 at about 10:50 UTC ("Yes the site can use that longer bio from ruv.sgit",
+//   team/WORKFLOW.md). F13 (the "vibe-cast" lab) and F15 (his own links) are NOT cleared and are not used.
+// - `src: []` marks a sentence that comes from the team's own record (Dinis Cruz's words in team/WORKFLOW.md,
+//   or the team/ files), not from a public source. Such sentences say where they come from in their words.
+// - `labelOurs: true` (or a comment) marks framing that is this site's, not a source's: a heading, a grouping.
+//
+// Round 2 exports and fields (writer, 2026-11-18, for team/rounds/2/design/PROPOSAL.md):
+// - PHOTO: { src, alt, width, height, credit }: the one headshot of him the site may use (Dinis Cruz,
+//   about 10:46 UTC, team/WORKFLOW.md). Never shown above 200 CSS px.
+// - HOME.hero: { eyebrow, line, lede } (each { text, src }) and actions [{ label, href, style }] for the
+//   first screen (change 1). HOME.numbers: [{ value, label, text, src }], four sourced numbers (change 1).
+// - POC.resultsNote { text, src } and POC.phasesNote: what is this site's reading in the run figure.
+// - HOME.career: { kicker, heading, headingPlain, summary [{ text, src }], href, linkText } for the Career band and the
+//   designs (changes 3 and 5). HOME.pullQuote: { text, by, cite, src }, Dinis Cruz's words only (change 3).
+// - WORK: the "Work with him" block (change 4a): { heading, projectsHeading, projects, projectsSrc,
+//   offersHeading, offers [{ group, line, status, src }], enquire { heading, email, label, subject,
+//   providerLabel, providerPage }, nextHeading, next [{ text, src }], disclaimer }.
+// - COLLAB.strip: the collaboration timeline strip for /collaboration/, 15 to 21 October 2026 (change 4b):
+//   [{ date, dateText, items [{ text, src }] }], 16 to 21 October (the talk stays once on the page).
+// - CAREER: the /experience/ career page (change 5), structure:
+//   { kicker, heading, intro { text, src }, pathLabel,
+//     path: [{ label, labelOurs?, orgs [string], text, src }]  ordered stops in the source's order (First, Then,
+//                                                   After the MBA are ours; Later, Since September 2024 the
+//                                                   source's); only September 2024 is a date the source gives,
+//     cards: [{ kicker, title, text, src }]         programme (Mentoring) and keynote,
+//     specialisms: { heading, items [string], src } the seven items as listed,
+//     sectors: { text, src }                        the existing sectors line (F06),
+//     note: [{ text, src }]                         where the bio comes from and who cleared it,
+//     summary: HOME.career.summary }                the two-line summary for the home and the designs.
+// - DESIGN_IDEAS: { <design id>: string }, the one-line idea of each design for the pop-up and /d/ (change 10a).
+// - MADE: { title, text [string], linksLead, links [{ label, href }] }, the "How this was made" note on /behind-the-scenes/
+//   (change 10c); from team/ files, not a public source.
+// - SOURCES['newsroom-index'] (new): the newsroom's articles index, for this site's own count (F145).
+// - COLLAB.articlesNote.kind: 'count by this site' when the number is ours, not the source's.
 //
 // Fields added to the shape in the brief (all optional for the developer):
 // - SOURCES.<id>.facts: the facts.json ids this source backs. SOURCES.<id>.note: caveats on how it was read.
 // - PERSON.contact.subject: the email subject ruv.sgit.ai's own "Enquire to book" button uses.
 // - PERSON.status: what he has and has not approved yet (for the footer or the Sources page).
 // - HOME.actions: the two buttons on the home's first screen.
-// - POC.steps[].at: the time in the video where the article places the step (null when the article gives none).
+// - POC.steps[].at: the time in the video where the article places the step. The article gives a time for
+//   all twelve steps (F111 to F122); these are times in his video, not clock times.
 // - POC.vaultSteps / POC.gatedSteps / POC.cliSteps: which steps touch the vault, pass the policy gate, or use
 //   Ruflo's command line, as two later newsroom articles say (sources 'vault' and 'policy-door').
 // - POC.limits: what the run did not show, in its own and the newsroom's words.
@@ -41,7 +77,7 @@ export const SOURCES = {
     publisher: 'ruv.sgit.ai',
     date: null,
     read: '2026-11-18',
-    facts: ['F01', 'F02', 'F03', 'F04', 'F05', 'F06', 'F07', 'F20'],
+    facts: ['F01', 'F02', 'F03', 'F04', 'F05', 'F06', 'F07', 'F20', 'F98', 'F99', 'F100', 'F101'],
   },
   'providers-data': {
     title: 'Providers data file',
@@ -49,8 +85,8 @@ export const SOURCES = {
     publisher: 'ruv.sgit.ai',
     date: '2026-10-21',
     read: '2026-11-18',
-    facts: ['F08', 'F16', 'F17', 'F18'],
-    note: 'Used only for his role on the marketplace, his consent to be listed and the status of his bio. The long bio in this file is a draft for him to approve and is not used.',
+    facts: ['F08', 'F09', 'F10', 'F11', 'F12', 'F14', 'F16', 'F17', 'F18'],
+    note: 'Used for his role on the marketplace, his consent to be listed, and his career, programme, keynote and specialisms from the long bio. The file marks the bio as drafted for him to approve; Dinis Cruz cleared it for this site on 18 November 2026. One line of the bio and his own links are not used.',
   },
   offers: {
     title: 'Offers data file',
@@ -58,7 +94,7 @@ export const SOURCES = {
     publisher: 'ruv.sgit.ai',
     date: '2026-10-15',
     read: '2026-11-18',
-    facts: ['F21', 'F22', 'F23', 'F24', 'F26'],
+    facts: ['F21', 'F22', 'F23', 'F24', 'F26', 'F94', 'F95', 'F96', 'F97'],
   },
   types: {
     title: 'Project types data file',
@@ -74,7 +110,7 @@ export const SOURCES = {
     publisher: 'ruv.sgit.ai',
     date: null,
     read: '2026-11-18',
-    facts: ['F19', 'F25', 'F40'],
+    facts: ['F19', 'F25', 'F40', 'F102', 'F103', 'F104', 'F106'],
   },
   'llms-ruv': {
     title: 'ruv.sgit.ai llms.txt',
@@ -82,7 +118,7 @@ export const SOURCES = {
     publisher: 'ruv.sgit.ai',
     date: null,
     read: '2026-11-18',
-    facts: ['F07', 'F16', 'F19', 'F25', 'F40'],
+    facts: ['F07', 'F16', 'F19', 'F25', 'F40', 'F105'],
   },
   'next-phase': {
     title: 'Article No. 9: the next phase',
@@ -90,7 +126,7 @@ export const SOURCES = {
     publisher: 'ruv.sgit.ai',
     date: '2026-10-21',
     read: '2026-11-18',
-    facts: ['F17'],
+    facts: ['F17', 'F107'],
     note: 'Records the decision of 21 October 2026 to change "register interest" to "enquire to book" (research/sources.md 1.7).',
   },
   talk: {
@@ -117,7 +153,7 @@ export const SOURCES = {
     publisher: 'newsroom.sgit.ai (by Dinis Cruz)',
     date: '2026-10-16',
     read: '2026-11-18',
-    facts: ['F42', 'F80', 'F81', 'F82'],
+    facts: ['F42', 'F80', 'F81', 'F82', 'F131'],
   },
   poc: {
     title: 'What if an agent loses its workspace? Mondweep Chakravorty\'s SGit × Ruflo proof of concept, step by step: memory saved encrypted, the project deleted, the memory back in a fresh process, and three safeguards that held',
@@ -125,7 +161,9 @@ export const SOURCES = {
     publisher: 'newsroom.sgit.ai (by Dinis Cruz)',
     date: '2026-10-17',
     read: '2026-11-18',
-    facts: ['F50', 'F51', 'F52', 'F53', 'F54', 'F55', 'F56', 'F57', 'F58', 'F59', 'F60', 'F61', 'F62'],
+    facts: ['F50', 'F51', 'F52', 'F53', 'F54', 'F55', 'F56', 'F57', 'F58', 'F59', 'F60', 'F61', 'F62',
+      'F108', 'F109', 'F110', 'F111', 'F112', 'F113', 'F114', 'F115', 'F116', 'F117', 'F118', 'F119', 'F120',
+      'F121', 'F122', 'F123', 'F124', 'F133'],
     note: 'The step texts and times quote this article as recorded in research/sources.md 3.2.',
   },
   vault: {
@@ -134,7 +172,7 @@ export const SOURCES = {
     publisher: 'newsroom.sgit.ai (by Dinis Cruz)',
     date: '2026-10-17',
     read: '2026-11-18',
-    facts: ['F63', 'F64'],
+    facts: ['F63', 'F64', 'F125', 'F134'],
   },
   'policy-door': {
     title: 'The policy guards the door; the command line uses the window: in the SGit × Ruflo run, the ABP is compiled into Ruflo\'s own rules and enforced on the adapter\'s tools, while Ruflo\'s command line reaches the same memory file without it, as the author\'s own README says',
@@ -142,7 +180,7 @@ export const SOURCES = {
     publisher: 'newsroom.sgit.ai (by Dinis Cruz)',
     date: '2026-10-17',
     read: '2026-11-18',
-    facts: ['F65'],
+    facts: ['F65', 'F126', 'F127', 'F132'],
   },
   'pr-article': {
     title: 'Our first PR in Ruflo: an ABP-governed SGit page, merged into ruvnet/ruflo, and the four pieces that got it there',
@@ -150,7 +188,7 @@ export const SOURCES = {
     publisher: 'newsroom.sgit.ai (by Dinis Cruz)',
     date: '2026-10-17',
     read: '2026-11-18',
-    facts: ['F53', 'F70', 'F71', 'F72', 'F73', 'F74', 'F75', 'F76', 'F77', 'F78', 'F79'],
+    facts: ['F53', 'F70', 'F71', 'F72', 'F73', 'F74', 'F75', 'F76', 'F77', 'F78', 'F79', 'F128', 'F136'],
   },
   decisions: {
     title: 'Three decisions, mapped: an agent\'s memory, this newsroom\'s release and a customer refund, through behaviour, decision and workflow',
@@ -158,7 +196,7 @@ export const SOURCES = {
     publisher: 'newsroom.sgit.ai (by Dinis Cruz)',
     date: '2026-10-17',
     read: '2026-11-18',
-    facts: ['F83'],
+    facts: ['F83', 'F137'],
   },
   policies: {
     title: 'Three policies for an agent: behaviour says what it may do, decision says who chooses, workflow says in what order',
@@ -166,16 +204,15 @@ export const SOURCES = {
     publisher: 'newsroom.sgit.ai (by Dinis Cruz)',
     date: '2026-10-17',
     read: '2026-11-18',
-    facts: ['F83'],
+    facts: ['F83', 'F138', 'F142'],
   },
   mess: {
-    title: 'Who will fix your mess',
+    title: 'Who will fix your mess? An answer to HBR\'s "deployment gap" from what this site has already published: explorers, villagers and town planners, a record of what the agents built, and open source so the answer never depends on one partner',
     url: 'https://newsroom.sgit.ai/articles/who-will-fix-your-mess.md',
     publisher: 'newsroom.sgit.ai (by Dinis Cruz)',
     date: '2026-10-17',
     read: '2026-11-18',
-    facts: ['F84'],
-    note: 'Title taken from the address; the full title was not recorded.',
+    facts: ['F84', 'F135'],
   },
   allowed: {
     title: 'Allowed is not right',
@@ -183,26 +220,24 @@ export const SOURCES = {
     publisher: 'newsroom.sgit.ai (by Dinis Cruz)',
     date: '2026-10-18',
     read: '2026-11-18',
-    facts: [],
-    note: 'Title shortened from the address: the full title names a person this site does not name. The line used is quoted in research/sources.md 3.10.',
+    facts: ['F139', 'F143'],
+    note: 'The opening words of the title; the rest names a person this site does not name.',
   },
   reach: {
-    title: 'What can your agent reach',
+    title: 'What can your agent reach? RiskMandate and the Agent Behaviour Policy, explained for the person who has to decide',
     url: 'https://newsroom.sgit.ai/articles/what-can-your-agent-reach.md',
     publisher: 'newsroom.sgit.ai (by Dinis Cruz)',
     date: '2026-10-18',
     read: '2026-11-18',
-    facts: ['F85'],
-    note: 'Title taken from the address; the full title was not recorded.',
+    facts: ['F85', 'F140'],
   },
   librarian: {
-    title: 'The librarian\'s daily brief',
+    title: 'The Librarian\'s daily brief: everything that happened in my universe yesterday, the threads I left, and where my leverage is today',
     url: 'https://newsroom.sgit.ai/articles/the-librarians-daily-brief.md',
     publisher: 'newsroom.sgit.ai (by Dinis Cruz)',
     date: '2026-10-18',
     read: '2026-11-18',
-    facts: [],
-    note: 'Title taken from the address; the full title was not recorded. The line used is quoted in research/sources.md 3.12.',
+    facts: ['F141', 'F144'],
   },
   pr: {
     title: 'Pull request #4239: docs: ABP-governed SGit memory checkpoints and Ruflo CLI recovery validation',
@@ -210,7 +245,7 @@ export const SOURCES = {
     publisher: 'GitHub (ruvnet/ruflo)',
     date: '2026-10-17',
     read: '2026-11-18',
-    facts: ['F90'],
+    facts: ['F90', 'F129'],
     note: 'The web page and the API returned 403 to this session. Checked with anonymous git: the pull request head is commit 6b49d58.',
   },
   'ruflo-git': {
@@ -219,7 +254,7 @@ export const SOURCES = {
     publisher: 'GitHub (ruvnet/ruflo)',
     date: null,
     read: '2026-11-18',
-    facts: ['F74', 'F90', 'F91'],
+    facts: ['F74', 'F90', 'F91', 'F129'],
     note: 'Read with anonymous git (ls-remote and a metadata-only clone).',
   },
   'pr-page': {
@@ -228,7 +263,16 @@ export const SOURCES = {
     publisher: 'GitHub (ruvnet/ruflo)',
     date: '2026-10-17',
     read: '2026-11-18',
-    facts: ['F53', 'F92', 'F93'],
+    facts: ['F53', 'F92', 'F93', 'F130'],
+  },
+  'newsroom-index': {
+    title: 'newsroom.sgit.ai: all articles',
+    url: 'https://newsroom.sgit.ai/articles/',
+    publisher: 'newsroom.sgit.ai (by Dinis Cruz)',
+    date: null,
+    read: '2026-11-18',
+    facts: ['F145'],
+    note: 'Used for one count by this site, not by the newsroom: on 18 November 2026 each article\'s text was searched for his name above its "Threads" heading.',
   },
 };
 
@@ -254,8 +298,20 @@ export const PERSON = {
   providerPage: 'https://ruv.sgit.ai/providers/mondweep-chakravorty.html',
   status: [
     { text: 'Mondweep agreed to this public site, as Dinis Cruz told the team on 18 November 2026. He has not yet reviewed any version of it.', src: [] },
-    { text: 'No photo of him is used. The monogram MC stands in, as on his provider page.', src: ['provider'] },
+    // From Dinis Cruz's words in team/WORKFLOW.md (about 10:46 UTC), not a public source.
+    { text: 'The only photograph of him on this site is the headshot Dinis Cruz supplied with his agreement on 18 November 2026.', src: [] },
   ],
+};
+
+// The one image of Mondweep the site may use (Dinis Cruz, 2026-11-18, about 10:46 UTC, team/WORKFLOW.md:
+// "Here is the profile pics"). Never shown above its own 200 px. The monogram MC (PERSON.monogram, as on his
+// provider page, F100) stays for the designs and cards that are typographic.
+export const PHOTO = {
+  src: '/assets/photo/mondweep-chakravorty.png',
+  alt: 'Mondweep Chakravorty',
+  width: 200,
+  height: 200,
+  credit: 'Supplied by Dinis Cruz with Mondweep\'s agreement, 18 November 2026',
 };
 
 export const HOME = {
@@ -263,8 +319,53 @@ export const HOME = {
   intro: [
     { text: 'Through DxSure Ltd, Mondweep Chakravorty advises on and builds agentic AI systems. His work draws on two decades in financial services, automotive, energy and technology, from HSBC to Jaguar Land Rover.', src: ['provider'] },
     { text: 'He is a co-founder of the Agentics Foundation\'s London chapter, a community of about 300 engineers, strategists and educators.', src: ['provider', 'london'] },
-    { text: 'With Dinis Cruz, he is one of the two founding providers of ruv.sgit.ai, a small marketplace for agentic engineering work.', src: ['llms-ruv', 'ruv-home'] },
+    { text: 'With Dinis Cruz, he is one of the two founding providers of ruv.sgit.ai, a small marketplace for agent work done under a written mandate per role.', src: ['llms-ruv', 'ruv-home'] },
   ],
+  // The first screen (change 1). The eyebrow is from his headline and place (F02, F03); the line is F02's and
+  // F05's own words, whole sentences (design review condition 1); the lede is F06's words.
+  hero: {
+    eyebrow: { text: 'London. Co-founder, Agentics Foundation London', src: ['provider'] },
+    line: { text: 'Enterprise AI leader and agentic systems builder. Through DxSure Ltd he advises on and builds agentic AI systems.', src: ['provider'] },
+    lede: { text: 'Two decades in financial services, automotive, energy and technology, from HSBC to Jaguar Land Rover.', src: ['provider'] },
+    actions: [
+      { label: 'See the proof of concept', href: '/proof-of-concept/', style: 'primary' },
+      { label: 'Work with him', href: '#work', style: 'secondary' },
+    ],
+  },
+  // Four numbers on the first screen (change 1). Each value is the source's number; the label is our wording
+  // around it; `text` is the whole sentence (for a screen reader or a plain-text page). The third keeps F30's
+  // own words, "a community of about 300 engineers, strategists and educators" (design review condition 2).
+  numbers: [
+    { value: '12', label: 'steps and 3 safeguards in his SGit × Ruflo run',
+      text: 'His SGit × Ruflo run has 12 steps and 3 safeguards.', src: ['poc'] },
+    { value: '#4239', label: 'his pull request, merged into Ruflo on 17 October 2026',
+      text: 'His pull request #4239 was merged into Ruflo on 17 October 2026.', src: ['pr-article', 'pr-page'] },
+    { value: 'About 300', label: 'engineers, strategists and educators: the community of the London chapter he co-founded, as its site gave it on 18 November 2026',
+      text: 'He co-founded the Agentics Foundation\'s London chapter, a community of about 300 engineers, strategists and educators, as the chapter\'s site gave it on 18 November 2026.', src: ['provider', 'london'] },
+    { value: '2', label: 'founding providers of ruv.sgit.ai: him and Dinis Cruz',
+      text: 'ruv.sgit.ai has 2 founding providers: him and Dinis Cruz.', src: ['llms-ruv', 'ruv-home'] },
+  ],
+  // The Career band (changes 3 and 5). The heading names the source's own first and present stops (F10, F09),
+  // as design review condition 14 sets it; the proposal's "From core banking to agentic AI" was rejected
+  // because no source frames his career that way. Any other summary heading goes to Dinis first.
+  career: {
+    kicker: 'Career',
+    heading: 'From HSBC Global Technology to DxSure Ltd',
+    headingPlain: 'Career',
+    summary: [
+      { text: 'He began his career as a software engineer at HSBC Global Technology. After an MBA at London Business School, he led transformation and delivery work at Shell Energy, TalkTalk and Zafin, and later worked at Jaguar Land Rover and Lotus Technology.', src: ['providers-data'] },
+      { text: 'Since September 2024 he has worked as an independent AI advisor through DxSure Ltd.', src: ['providers-data'] },
+    ],
+    href: '/experience/',
+    linkText: 'His career, in full',
+  },
+  // The pull quote (change 3): Dinis Cruz's words, word for word (F61). No words are presented as Mondweep's.
+  pullQuote: {
+    text: 'This is the first time someone outside our own sessions has taken the two ideas we keep arguing for, an encrypted vault as an agent\'s memory and a behaviour policy beside the prompt, and run them together inside someone else\'s agent stack, on camera.',
+    by: 'Dinis Cruz',
+    cite: 'Dinis Cruz, in the newsroom article on the proof of concept, 17 October 2026',
+    src: ['poc'],
+  },
   highlights: [
     {
       title: 'SGit × Ruflo proof of concept',
@@ -335,19 +436,19 @@ export const POC = {
   steps: [
     { n: 1, title: 'A real, pinned runtime', at: '0:09', phase: 'setup', safeguard: null,
       text: 'The run uses a pinned version of Ruflo: ruflo --version returns v3.56.10.' },
-    { n: 2, title: 'Define the mandate', at: null, phase: 'setup', safeguard: null,
+    { n: 2, title: 'Define the mandate', at: '0:14', phase: 'setup', safeguard: null,
       text: 'The mandate is four Agent Behaviour Policy rows, all scoped to the project: write memory, yes; read memory, yes; read history, yes; delete memory, approval. Unsupported or ambiguous policies fail closed.' },
     { n: 3, title: 'Store two facts through Ruflo', at: '0:21', phase: 'setup', safeguard: null,
       text: 'Ruflo stores two synthetic facts about Kestrel, a test name: its vehicles may charge only between 01:00 and 04:00 UTC, and its checkpoints are retained for seven days.' },
     { n: 4, title: 'Try something outside its permission', at: '0:32', phase: 'save', safeguard: 1,
       text: 'A request outside the agent\'s permission is refused with a PermissionError, and no checkpoint file is written.' },
-    { n: 5, title: 'Save an encrypted recovery point', at: null, phase: 'save', safeguard: null,
+    { n: 5, title: 'Save an encrypted recovery point', at: '0:38', phase: 'save', safeguard: null,
       text: 'The memory is saved as an encrypted SGit checkpoint, with three fingerprints: of the database, of the policy and of the compiled policy. Only encrypted SGit objects enter the checkpoint store; private keys stay in a separate directory.' },
     { n: 6, title: 'Approval means stop', at: '0:45', phase: 'save', safeguard: 2,
       text: 'A deletion that needs approval stops with a PermissionError, and the checkpoint is retained.' },
     { n: 7, title: 'Remove the original workspace', at: '0:51', phase: 'restore', safeguard: null,
       text: 'The original project workspace is removed. The loss is real, not simulated.' },
-    { n: 8, title: 'Restore in a fresh process', at: null, phase: 'restore', safeguard: null,
+    { n: 8, title: 'Restore in a fresh process', at: '0:58', phase: 'restore', safeguard: null,
       text: 'A brand-new process restores the checkpoint. The database\'s SHA-256 fingerprint is the same as in step 5.' },
     { n: 9, title: 'Ask Ruflo what it remembers', at: '1:04', phase: 'restore', safeguard: null,
       text: 'Ruflo reads both facts back. Both values match the facts written through its command line exactly.' },
@@ -381,6 +482,10 @@ export const POC = {
     { check: 'Semantic recall', result: 'NOT VALIDATED, because embeddings were off' },
   ],
   resultsSrc: ['poc'],
+  // For the run figure's key and the Run log footer (design review condition 10), and the figure's <desc>
+  // (condition 13). Both say what is this site's reading.
+  resultsNote: { text: 'The results are the run\'s own summary (step 12); setting each beside a step is this site\'s reading.', src: ['poc'] },
+  phasesNote: 'The four phases are this site\'s grouping, not the article\'s. Times are from his video.',
   fingerprint: {
     text: 'The restored database has the same SHA-256 fingerprint as the one saved.',
     line: 'SHA-256 of the database saved at step 5 = SHA-256 after the restore at step 8',
@@ -415,7 +520,7 @@ export const PR = {
   url: 'https://github.com/ruvnet/ruflo/pull/4239',
   title: 'docs: ABP-governed SGit memory checkpoints and Ruflo CLI recovery validation',
   opened: '2026-10-16',
-  openedText: 'the evening of 16 October 2026, London time',
+  openedText: 'at 23:02 on 16 October 2026, London time',
   merged: '2026-10-17T14:59:00+01:00',
   mergedText: '17 October 2026 at 14:59 London time',
   mergedBy: 'rUv (per the newsroom)',
@@ -432,7 +537,7 @@ export const PR = {
   commitsSrc: ['pr-article', 'ruflo-git'],
   capabilities: ['write.memory.project', 'read.memory.project', 'delete.memory.project'],
   summary: [
-    { text: 'Mondweep opened pull request #4239 in ruvnet/ruflo on the evening of 16 October 2026, with three commits between 23:02 and 23:59 London time.', src: ['pr-article', 'ruflo-git'] },
+    { text: 'Mondweep opened pull request #4239 in ruvnet/ruflo at 23:02 on 16 October 2026, London time. Its three commits are timed between 23:02 and 23:59.', src: ['pr-article', 'ruflo-git'] },
     { text: 'It adds one page, docs/integrations/sgit-memory-checkpoints.md: 83 lines that document his adapter. The page describes an opt-in community example that connects an Agent Behaviour Policy to a local memory adapter.', src: ['pr-article', 'pr-page'] },
     { text: 'It changes documentation only. It adds no Ruflo runtime dependencies or defaults.', src: ['pr-page', 'pr-article'] },
     { text: 'rUv merged it into Ruflo\'s main branch on 17 October 2026 at 14:59 London time, squashed into one commit, 332f22e, authored by Mondweep.', src: ['pr-article'] },
@@ -478,6 +583,57 @@ export const EXPERIENCE = {
   src: ['provider'],
 };
 
+// The /experience/ career page (change 5), from the long bio in ruv.sgit.ai/data/providers.json (F09 to F12,
+// F14), cleared by Dinis Cruz on 2026-11-18. Worded as the source gives it. The source gives an order and one
+// date (September 2024), so the path is ordered stops, not a dated timeline; the labels follow the source's own
+// order words ("began", "After an MBA", "Later", "Since September 2024"). Not used: F13 and F15.
+export const CAREER = {
+  kicker: 'Career',
+  heading: HOME.career.heading, // the source's first and present stops (see HOME.career)
+  intro: { text: 'He began his career as a software engineer at HSBC Global Technology. Since September 2024 he has worked as an independent AI advisor through DxSure Ltd.', src: ['providers-data'] },
+  pathLabel: 'In the order the source gives',
+  // labelOurs: the label is this site's word for the source's order ("began", "After an MBA"); "Later" and
+  // "Since September 2024" are the source's own (design review condition 22).
+  path: [
+    { label: 'First', labelOurs: true, orgs: ['HSBC Global Technology'],
+      text: 'He began his career as a software engineer at HSBC Global Technology, working on payments and core banking integration.', src: ['providers-data'] },
+    { label: 'Then', labelOurs: true, orgs: ['London Business School'],
+      text: 'An MBA at London Business School.', src: ['providers-data'] },
+    { label: 'After the MBA', labelOurs: true, orgs: ['Shell Energy', 'TalkTalk', 'Zafin'],
+      text: 'He led transformation and delivery work at Shell Energy, TalkTalk and Zafin, the last on core banking SaaS for major banks.', src: ['providers-data'] },
+    { label: 'Later', orgs: ['Jaguar Land Rover', 'Lotus Technology'],
+      text: 'He worked at Jaguar Land Rover and Lotus Technology on portfolio rationalisation, cloud foundations and connected experiences.', src: ['providers-data'] },
+    { label: 'Since September 2024', orgs: ['DxSure Ltd'],
+      text: 'He has worked as an independent AI advisor through DxSure Ltd. His work there combines advisory, solution architecture and hands-on agentic builds: multi-agent orchestration, RAG, MCP and AI security.', src: ['providers-data'] },
+  ],
+  cards: [
+    { kicker: 'Mentoring', title: 'Johns Hopkins Agentic AI programme', text: 'He mentors on the Johns Hopkins Agentic AI programme.', src: ['providers-data'] },
+    { kicker: 'Keynote', title: 'CISO London Summit 2025', text: 'At the CISO London Summit 2025 he co-presented the keynote "Securing the Agentic Frontier", applying the OWASP MAESTRO threat-modelling framework to an agentic AI codebase.', src: ['providers-data'] },
+  ],
+  specialisms: {
+    heading: 'Specialisms, as listed',
+    items: [
+      'Agentic AI architecture (multi-agent, RAG, MCP)',
+      'Agentic AI security and threat modelling (MAESTRO)',
+      'Enterprise programme delivery and C-suite advisory',
+      'Financial services, core banking and payments',
+      'Automotive and digital transformation',
+      'Cloud platforms (AWS, GCP, Azure)',
+      'Agentic AI community building',
+    ],
+    src: ['providers-data'],
+  },
+  sectors: { text: 'His work draws on two decades in financial services, automotive, energy and technology, from HSBC to Jaguar Land Rover.', src: ['provider'] },
+  // Where the bio comes from: the drafting status is public (F16); the clearance is Dinis Cruz's word in
+  // team/WORKFLOW.md, so the second sentence names its source in its words.
+  note: [
+    { text: 'From the bio on ruv.sgit.ai, drafted there for him to approve.', src: ['providers-data'] },
+    { text: 'Dinis Cruz cleared it for this site on 18 November 2026.', src: [] },
+  ],
+  summary: HOME.career.summary,
+  src: ['providers-data', 'provider'],
+};
+
 export const LONDON = {
   role: 'Chapter Co-Founder',
   name: 'Agentics Foundation, London chapter',
@@ -500,7 +656,7 @@ export const LONDON = {
 
 export const COLLAB = {
   intro: [
-    { text: 'Mondweep Chakravorty and Dinis Cruz are the two founding providers of ruv.sgit.ai, a small marketplace for agentic engineering work.', src: ['llms-ruv', 'ruv-home'] },
+    { text: 'Mondweep Chakravorty and Dinis Cruz are the two founding providers of ruv.sgit.ai, a small marketplace for agent work done under a written mandate per role.', src: ['llms-ruv', 'ruv-home'] },
     { text: 'Each lists the same four offers at the published prices. Every job is a ruv.sgit run: a written mandate per agent, an encrypted vault per run, a person watching, and the vault handed to the client.', src: ['ruv-home', 'provider'] },
   ],
   founding: { text: 'Dinis Cruz\'s newsroom introduced the marketplace on 16 October 2026 and named its first two providers: Mondweep, co-founder of the Agentics Foundation\'s London chapter, and Dinis. Mondweep agreed to be listed the same day.', src: ['ready', 'providers-data'] },
@@ -579,7 +735,7 @@ export const COLLAB = {
       why: 'Walks through his proof of concept: twelve steps and three safeguards.' },
     { no: 165, date: '2026-10-17', short: 'When is the vault actually used?', title: SOURCES.vault.title, url: SOURCES.vault.url,
       why: 'Shows where the encrypted vault is used in his run: written in step 5, read in 8, read and rejected in 11.' },
-    { no: 166, date: '2026-10-17', short: 'Who will fix your mess', title: SOURCES.mess.title, url: SOURCES.mess.url, titleNote: 'from the address; full title not recorded',
+    { no: 166, date: '2026-10-17', short: 'Who will fix your mess?', title: SOURCES.mess.title, url: SOURCES.mess.url,
       why: 'Cites his proof of concept as an example of a prototype ready for handover.' },
     { no: 169, date: '2026-10-17', short: 'Our first PR in Ruflo', title: SOURCES['pr-article'].title, url: SOURCES['pr-article'].url,
       why: 'Records his pull request #4239, merged into Ruflo by rUv.' },
@@ -587,14 +743,14 @@ export const COLLAB = {
       why: 'Uses the approval row for deleting memory in his adapter as the first of three decisions mapped.' },
     { no: 173, date: '2026-10-17', short: 'Three policies for an agent', title: SOURCES.policies.title, url: SOURCES.policies.url,
       why: 'Uses his Agent Behaviour Policy for SGit memory checkpoints as an example.' },
-    { no: 175, date: '2026-10-18', short: 'Allowed is not right', title: SOURCES.allowed.title, url: SOURCES.allowed.url, titleNote: 'shortened from the address; the full title names a person this site does not name',
+    { no: 175, date: '2026-10-18', short: 'Allowed is not right', title: SOURCES.allowed.title, url: SOURCES.allowed.url, titleNote: 'the opening words of the title; the rest names a person this site does not name',
       why: 'Notes that he compiled an Agent Behaviour Policy into Ruflo\'s own rules and checked them in enforce mode, outside the agent.' },
-    { no: 178, date: '2026-10-18', short: 'What can your agent reach', title: SOURCES.reach.title, url: SOURCES.reach.url, titleNote: 'from the address; full title not recorded',
+    { no: 178, date: '2026-10-18', short: 'What can your agent reach?', title: SOURCES.reach.title, url: SOURCES.reach.url,
       why: 'Describes how he enforced a compiled policy, in real time, on the memory operations of an external adapter.' },
-    { no: 193, date: '2026-10-18', short: 'The librarian\'s daily brief', title: SOURCES.librarian.title, url: SOURCES.librarian.url, titleNote: 'from the address; full title not recorded',
+    { no: 193, date: '2026-10-18', short: 'The Librarian\'s daily brief', title: SOURCES.librarian.title, url: SOURCES.librarian.url,
       why: 'Names his pull request to Ruflo as the kind of outside contribution the newsroom wants to see.' },
   ],
-  articlesNote: { text: 'Eleven newsroom articles by Dinis Cruz name Mondweep in their text, between 16 and 18 October 2026.', src: ['ready', 'poc', 'pr-article'] },
+  articlesNote: { text: 'By this site\'s count of the newsroom on 18 November 2026, eleven of its 470 articles name Mondweep in their text, all by Dinis Cruz and dated 16 to 18 October 2026.', src: ['newsroom-index'], kind: 'count by this site' },
   timeline: [
     { date: '2025-05', text: 'The Agentics Foundation\'s London chapter is founded, with Mondweep as a co-founder. Its first meetup is on 21 May 2025.', src: ['london'] },
     { date: '2026-10-15', text: 'Dinis Cruz gives the talk "Autonomy with a mandate and a memory" at Agentic Engineering Live, an evening of the London chapter.', src: ['talk', 'ready'] },
@@ -604,7 +760,61 @@ export const COLLAB = {
     { date: '2026-10-17', text: 'At 14:59 London time, rUv merges pull request #4239 into Ruflo\'s main branch.', src: ['pr-article'] },
     { date: '2026-10-21', text: 'ruv.sgit.ai changes "register interest" to "enquire to book", and his provider page goes live with a bio drafted for him to approve.', src: ['next-phase', 'llms-ruv', 'providers-data'] },
   ],
+  // The timeline strip on /collaboration/ (change 4b): 16 to 21 October 2026. It starts on 16 October so the
+  // talk appears once on the page (round 1 condition 15; design review condition 20). Times are London time.
+  // The full timeline above stays and keeps the May 2025 entry.
+  strip: [
+    { date: '2026-10-16', dateText: '16 Oct',
+      items: [
+        { text: 'The marketplace is introduced; he and Dinis Cruz are named its first two providers.', src: ['ready', 'providers-data'] },
+        { text: 'He opens pull request #4239 at 23:02 London time; its commits run to 23:59.', src: ['pr-article', 'ruflo-git'] },
+      ] },
+    { date: '2026-10-17', dateText: '17 Oct',
+      items: [
+        { text: 'His video is published, and the newsroom walks through it step by step.', src: ['poc'] },
+        { text: 'rUv merges pull request #4239 at 14:59 London time.', src: ['pr-article'] },
+      ] },
+    { date: '2026-10-21', dateText: '21 Oct',
+      items: [
+        { text: '"Register interest" becomes "enquire to book", and his provider page goes live.', src: ['next-phase'] },
+      ] },
+  ],
   src: ['llms-ruv', 'ruv-home', 'provider', 'offers', 'types', 'ready'],
+};
+
+// "Work with him" (change 4a): what to ask for, what it costs, how to start, in one place, on the home,
+// on /collaboration/ and in each design. Prices exactly as ruv.sgit.ai publishes them (COLLAB.offers);
+// "What happens next" holds only the sources' words (design review condition 17); the sources give no
+// order for its items, so the developer shows them as a bulleted list (condition 18).
+export const WORK = {
+  heading: 'Work with him',
+  projectsHeading: 'Five kinds of project',
+  projects: COLLAB.projects,
+  projectsSrc: COLLAB.projectsSrc,
+  offersHeading: 'The four offers, as published (GBP, excluding VAT)',
+  offers: [
+    { group: 'Task runs', line: '£10, £20 or £50 a run; £9, £17 or £40 with your own model key.', status: null, src: ['offers', 'llms-ruv'] },
+    { group: 'Dedicated compute', line: '£21, £23 or £36 per 8-hour block.', status: 'Not built yet', src: ['offers', 'llms-ruv'] },
+    { group: 'Maintained repository', line: '£149, £499 or £1,500 a month.', status: null, src: ['offers', 'llms-ruv'] },
+    { group: 'Expert time', line: '£500 for about 2 hours, £1,500 for a working day, £5,000 for four working days.', status: null, src: ['offers', 'llms-ruv'] },
+  ],
+  enquire: {
+    heading: 'How to enquire',
+    email: PERSON.contact.email,
+    label: PERSON.contact.label,
+    subject: PERSON.contact.subject,
+    providerLabel: 'His provider page',
+    providerPage: PERSON.providerPage,
+    src: ['provider'],
+  },
+  nextHeading: 'What happens next',
+  next: [
+    { text: 'A person replies with dates and a quote. The site takes no payment.', src: ['provider'] },
+    { text: 'The offers under each kind of project are a suggested starting combination, agreed in the first conversation.', src: ['provider'] },
+    { text: 'Most clients start small and stop at any step.', src: ['provider'] },
+    { text: 'Runs are not automated end to end yet: a person starts, watches and hands over every run.', src: ['offers'] },
+  ],
+  disclaimer: COLLAB.disclaimer,
 };
 
 export const AI = {
@@ -655,7 +865,7 @@ export const PAGES = {
   '/': { title: 'Mondweep Chakravorty', description: 'Enterprise AI leader and agentic systems builder in London; co-founder of the Agentics Foundation\'s London chapter.' },
   '/built/': { title: 'What he has built', description: 'The SGit × Ruflo proof of concept, its code under the MIT licence, and Ruflo PR #4239.' },
   '/proof-of-concept/': { title: 'SGit × Ruflo proof of concept', description: 'Memory saved encrypted, the project deleted, the memory back in a fresh process: twelve steps and three safeguards.' },
-  '/experience/': { title: 'Experience', description: 'Two decades in financial services, automotive, energy and technology; agentic AI work through DxSure Ltd.' },
+  '/experience/': { title: 'Career', description: 'From software engineer at HSBC Global Technology to independent AI advisor through DxSure Ltd: his career, a programme, a keynote and his specialisms.' },
   '/agentics-london/': { title: 'Agentics Foundation, London', description: 'The London chapter he co-founded in May 2025: about 300 members, meetups every second Wednesday.' },
   '/collaboration/': { title: 'With Dinis Cruz', description: 'The two founding providers of ruv.sgit.ai: how it began, the four offers as published, the five kinds of project, and the articles.' },
   '/sources/': { title: 'Sources', description: 'Every source used on this site, with its address and the date it was read.' },
@@ -664,15 +874,44 @@ export const PAGES = {
   '/d/': { title: 'Designs', description: 'The same facts and sources, five ways.' },
 };
 
+// The one-line idea of each design (change 10a), for the Designs pop-up, /d/ and each design's description.
+// Descriptions of our own designs, not facts about him.
+export const DESIGN_IDEAS = {
+  ledger: 'A colour field, his photograph and the run drawn on the home page.',
+  broadsheet: 'A newspaper front page: the run as Plate 1, with a caption column.',
+  runlog: 'Story on the left, the run\'s log on the right, with video times and results.',
+  blueprint: 'One drawn sheet: the phases as zones, the safeguards as balloons.',
+  vault: 'The run as four checkpoint doors, with the vault steps marked.',
+};
+
+// "How this was made" (change 10c), a short note at the top of /behind-the-scenes/. From team/WORKFLOW.md,
+// team/*/ROLE.md and scripts/release.sh, not from a public source. Says nothing about either linked site
+// beyond its address.
+export const MADE = {
+  title: 'The team behind this site',
+  // Design review condition 31: not a near-copy of the existing "How it is made" heading.
+  text: [
+    'Six AI agents made this site: a conductor, which briefs the others and is the only one that publishes, and a researcher, designer, writer, developer and reviewer, which the conductor runs as sub-agents in one Claude Code session. Each has a role file and an Agent Behaviour Policy.',
+    'They work in rounds: research, design, a review of the design, copy, build, release, a review of the live site, and a report. Every release passes gates first: the validator, the leak scan, the commit check and the check of which files each agent may change.',
+    'Dinis Cruz instructs the team, and Mondweep Chakravorty approves every change about him through Dinis.',
+  ],
+  linksLead: 'More about AgentiCCells:',
+  links: [
+    { label: 'agenticcells.ai', href: 'https://agenticcells.ai' },
+    { label: 'hub.agenticcells.site', href: 'https://hub.agenticcells.site' },
+  ],
+  src: [],
+};
+
 export const OPEN = [
-  'Does Mondweep want anything added from the draft bio on ruv.sgit.ai (career history, programmes, the CISO London Summit 2025 keynote, specialisms)? None of it is used until he approves it.',
-  'The headshot: Dinis has said he has one. Until it reaches this session the monogram MC stands in. Does Mondweep approve the photo for this site?',
+  'Dinis Cruz cleared the long bio from ruv.sgit.ai on 18 November 2026, and the career page uses it as the source words it. The bio is still marked there as drafted for Mondweep to approve: is he content with the wording? One line of it (F13, not cleared) is not used.',
+  'The headshot is on the home and the Ledger link-preview card. Should the /collaboration/ card and the Broadsheet and Vault designs carry it too?',
   'Is he content with the talk shown only on the collaboration page, as Dinis Cruz\'s talk after which the marketplace began, at an event of the chapter he co-founded?',
-  'The newsroom gives the start and end of the SHA-256 fingerprint (steps 5 and 8). The reviewer ruled hash values off the site for now; does he want them shown?',
+  'The newsroom gives the start and end of the fingerprint at step 8. The reviewer ruled hash values off the site for now; does he want them shown?',
   'How does he want the collaboration described? The site says "founding providers" and "matches enquiries and reviews applications with Dinis Cruz", as ruv.sgit.ai does. Should it say "partner"?',
   'Should the site show ruv.sgit.ai\'s published rules (an equal split of revenue after direct costs; whoever has the client bills)? They are left out for now.',
   'Should the site link his own pages (mondweep.net, github.com/mondweep) as listed in ruv.sgit.ai\'s data file? Only the sgit-ruv-memory repository is linked now.',
   'Is DxSure Ltd the name he wants shown, and should the site say what DxSure does beyond "advises on and builds agentic AI systems"?',
   'Can the site embed or show frames of his video? The newsroom says the frames are his and not covered by its licence; the site only links to it.',
-  'Four newsroom article titles are taken from their addresses; one (No. 175) is shortened because its full title names another person. Is that acceptable?',
+  'One newsroom article title (No. 175) is cut to its opening words, "Allowed is not right", because the rest names another person. Is that acceptable?',
 ];
