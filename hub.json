@@ -1,0 +1,11 @@
+{
+  "schema": "hub.json (draft)",
+  "name": "Mondweep Chakravorty",
+  "what_it_does": "Mondweep Chakravorty: enterprise AI leader and agentic systems builder in London, co-founder of Agentics Foundation London, and his work with Dinis Cruz.",
+  "owner": "AgentiCCells",
+  "team": "factory@AgentiCCells.dinis, instructed by Dinis Cruz",
+  "licence": { "code": "Apache-2.0", "text": "CC BY 4.0" },
+  "repository": "https://github.com/AgentiCCells/AgentiCCells__Site__Mondweep-Chakravorty",
+  "live_address": "https://mondweep-chakravorty.agenticcells.site",
+  "version_from": "https://mondweep-chakravorty.agenticcells.site/version.json"
+}
