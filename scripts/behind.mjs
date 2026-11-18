@@ -5,8 +5,9 @@
 // after generate.mjs and designs.mjs. Everything on these pages is read at build time from the
 // repository: team/<role>/ROLE.md and POLICY.md, team/scopes.json, team/WORKFLOW.md, team/rounds/
 // and `git log`. Nothing is typed in by hand, so a new commit or round changes the pages with no edit.
-// Node built-ins only. It runs last, so it also runs the output checks in lib.mjs (people named,
-// no image of Mondweep) over the whole of _site/.
+// Node built-ins only. It runs last, so it also runs the output checks in lib.mjs (people named, and
+// no image of Mondweep but the headshot Dinis Cruz supplied and the images listed as made from it) over
+// the whole of _site/.
 //
 // Adapted from scripts/behind.mjs in AgentiCCells__Site__Marc-Noah (the Marc Noah cell, same
 // organisation, Apache-2.0), written by developer.marc-noah@AgentiCCells.dinis, round 1, 2026-11-17.
@@ -14,7 +15,8 @@
 // pages; the commit list shows the short hash, date, the role from the Agent: trailer and the
 // subject only (no author names or emails; review condition 36); "Dinis's words" keeps only the
 // paragraphs that are his words (condition 37); the "how the site started" section is folded into
-// the commit list; the output checks at the end.
+// the commit list; the output checks at the end. Round 2: "The team behind this site" (data MADE,
+// change 10c) at the top of the page; the photograph line comes from PERSON.status.
 import { execFileSync } from 'node:child_process';
 import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync, statSync, copyFileSync } from 'node:fs';
 import { join, dirname, posix } from 'node:path';
@@ -328,6 +330,11 @@ const index = sitePage({
   body: `
 <h1>Behind the scenes</h1>
 <p class="lede">How this site is made, by whom and in what order. Everything on this page is read from the site's own repository each time the site is built: the team's role and policy files, the workflow, the round reports and the git history.</p>
+<section class="made" aria-labelledby="team-behind">
+<h2 id="team-behind">${esc(D.MADE.title)}</h2>
+${D.MADE.text.map(t => `<p>${esc(t)}</p>`).join('\n')}
+<p>${esc(D.MADE.linksLead)} ${D.MADE.links.map(l => `<a href="${esc(l.href)}">${esc(l.label)}</a>`).join(' and ')}.</p>
+</section>
 <ul class="bts-parts" aria-label="On this page"><li><a href="#made">How it is made</a></li><li><a href="#team">The team</a></li><li><a href="#flow">The flow of a round</a></li><li><a href="#rounds">Rounds</a></li><li><a href="#commits">Every commit</a></li></ul>
 
 <h2 id="made">How it is made</h2>
