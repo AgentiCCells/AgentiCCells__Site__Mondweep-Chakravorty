@@ -32,6 +32,22 @@ for (const f of [...files, 'hub.json', 'README.md']) {
     }
   }
 }
+// The team's own files follow the same wording rules, and every policy passes abp-check
+// (conductor.mondweep-chakravorty@, 2026-11-18, from the Marc Noah cell's validator).
+if (existsSync('team')) for (const f of walk('team').filter(f => f.endsWith('.md'))) {
+  readFileSync(f, 'utf8').split('\n').forEach((line, i) => {
+    if (line.includes('\u2014')) fail(`${f}:${i + 1}: em dash`);
+    const m = line.match(hype); if (m) fail(`${f}:${i + 1}: hype word "${m[0]}"`);
+  });
+}
+{
+  const { extract, check, policyFiles } = await import('./abp-check.mjs');
+  for (const f of policyFiles()) {
+    const md = readFileSync(f, 'utf8'); const { data, error } = extract(md);
+    if (error) { fail(`${f}: ${error}`); continue; }
+    for (const e of check(data, md).errs) fail(`${f}: ${e}`);
+  }
+}
 if (!existsSync('_site/version.json')) fail('no version.json');
 if (!existsSync('_site/index.html')) fail('no index.html');
 try {
