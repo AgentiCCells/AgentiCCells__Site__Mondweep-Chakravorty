@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mock-up: four designs, first screens</title>
+<!-- Round 2 design mock-up, changes 6 to 9: the first screen of Broadsheet, Run log, Blueprint and Vault.
+     Proposal, not the site. Each block below is one design's first screen; on the site each is its own page.
+     Every word is from data/site.mjs (POC.steps, POC.safeguards, POC.results, POC.vaultSteps, PERSON, HOME).
+     Markers are shown as [n]. CSS is scoped by .bs, .rl, .bp, .vt so the developer can lift each block. -->
+<style>
+*{box-sizing:border-box}
+body{margin:0;font:1rem/1.55 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:#ddd}
+.label{background:#000;color:#fff;margin:0;padding:.5rem 1rem;font:700 .9rem system-ui}
+sup{font-size:.7em;line-height:0;white-space:nowrap}
+.wrap{max-width:76rem;margin:0 auto;padding:0 1rem}
+section.d{min-height:768px;overflow:hidden}
+
+/* ================= Broadsheet (change 6) ================= */
+.bs{background:#F4F1EA;color:#161513;font-family:Charter,"Bitstream Charter","Sitka Text",Cambria,Georgia,serif}
+.bs a{color:#9B1C1C}
+.bs .mast{border-top:6px double #161513;border-bottom:1px solid #161513;text-align:center;margin-top:1rem;padding:.4rem 0}
+.bs .mast b{font:700 clamp(1.4rem,4vw,2.3rem)/1.1 inherit;letter-spacing:.02em}
+.bs .dl{display:flex;justify-content:space-between;flex-wrap:wrap;gap:0 1rem;border-bottom:3px solid #161513;padding:.3rem 0;font:600 .78rem/1.4 system-ui,sans-serif;letter-spacing:.07em;text-transform:uppercase}
+.bs .front{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,5fr) minmax(0,3fr);gap:0;margin-top:1rem}
+.bs .front>*{padding:0 1.25rem}.bs .front>*:first-child{padding-left:0}.bs .front>*:last-child{padding-right:0}
+.bs .front>*+*{border-left:1px solid #8E887C}
+.bs .kick{font:700 .8rem/1.3 system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#9B1C1C;margin:0 0 .25rem}
+.bs h1{font-size:clamp(2.6rem,5.4vw,4.6rem);line-height:.95;letter-spacing:-.02em;margin:0 0 .75rem}
+.bs .por{float:right;margin:0 0 .5rem .9rem;width:132px}
+.bs .por img{display:block;width:132px;height:132px;object-fit:cover;border:1px solid #161513}
+.bs .por figcaption{font:600 .72rem/1.3 system-ui,sans-serif;letter-spacing:.04em;text-transform:uppercase;margin-top:.25rem}
+.bs .sf{font-size:1.18rem;font-style:italic;line-height:1.45;margin:0}
+.bs .plate-h{font:700 .78rem/1.3 system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;border-bottom:2px solid #161513;padding-bottom:.3rem;margin:0 0 .6rem}
+.bs .plate{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;list-style:none;margin:0;padding:0}
+.bs .plate li{aspect-ratio:1;border:1.5px solid #161513;display:flex;flex-direction:column;justify-content:space-between;padding:.35rem .45rem;background:#FFFDF8}
+.bs .plate b{font-size:clamp(1.6rem,3vw,2.6rem);line-height:1}
+.bs .plate span{font:600 .62rem/1.2 system-ui,sans-serif;letter-spacing:.05em;text-transform:uppercase}
+.bs .plate li.sg{background:#9B1C1C;color:#FFFFFF;border-color:#9B1C1C}
+.bs .plate li.vlt{background-image:repeating-linear-gradient(135deg,transparent 0 6px,#E9E1CF 6px 8px)}
+.bs .plate-k{font:.78rem/1.4 system-ui,sans-serif;margin:.5rem 0 0}
+.bs .cap-h{font:700 .78rem/1.3 system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;margin:0 0 .4rem}
+.bs .cap{margin:0;padding:0 0 0 1.4rem;font-size:.86rem;line-height:1.35}
+.bs .cap li{margin:0 0 .3rem}.bs .cap em{color:#9B1C1C;font-style:normal;font-weight:700}
+@media (max-width:56rem){
+  .bs .front{grid-template-columns:1fr}.bs .front>*{padding:0!important;border:0!important}
+  .bs .front>*+*{margin-top:1.25rem}
+  .bs .por{width:96px}.bs .por img{width:96px;height:96px}
+  .bs .plate b{font-size:1.5rem}
+}
+
+/* ================= Run log (change 7) ================= */
+.rl{background:#0E1116;color:#D7DEE8;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;font-size:.95rem}
+.rl a{color:#7EE2A8}
+.rl .panes{display:grid;grid-template-columns:minmax(0,22rem) minmax(0,1fr);gap:1.5rem;padding:1.5rem 0}
+.rl .story{border:1px solid #3A4554;padding:1rem}
+.rl .story .tag{color:#9AA6B5;margin:0}
+.rl h1{color:#7EE2A8;font-size:1.7rem;line-height:1.15;margin:.4rem 0 .6rem}
+.rl .story p{margin:.4rem 0}
+.rl .btn{display:inline-flex;align-items:center;min-height:44px;padding:0 .9rem;border:2px solid #D7DEE8;color:#D7DEE8;text-decoration:none;margin:.4rem .4rem 0 0}
+.rl .btn.p{background:#7EE2A8;border-color:#7EE2A8;color:#0E1116}
+.rl .term{border:1px solid #3A4554}
+.rl .tbar{display:flex;gap:.4rem;align-items:center;border-bottom:1px solid #3A4554;padding:.45rem .75rem;color:#9AA6B5;font-size:.82rem}
+.rl .tbar i{width:.7rem;height:.7rem;border-radius:50%;background:#3A4554;display:inline-block}
+.rl .log{list-style:none;margin:0;padding:.6rem .75rem}
+.rl .log li{display:grid;grid-template-columns:4.2rem 3.4rem 5.6rem minmax(0,1fr) auto;gap:0 .6rem;padding:.18rem 0;white-space:nowrap}
+.rl .log .tm{color:#9AA6B5}.rl .log .no{color:#F2C14E}.rl .log .ph{color:#9AA6B5}
+.rl .log .ti{white-space:normal}
+.rl .ok{color:#7EE2A8;font-weight:700}.rl .bl{color:#FF8A80;font-weight:700}.rl .nv{color:#F2C14E;font-weight:700}
+.rl .log .note{grid-column:4/-1;color:#9AA6B5;white-space:normal;font-size:.85rem}
+.rl .foot{border-top:1px solid #3A4554;padding:.5rem .75rem;color:#9AA6B5;font-size:.82rem;margin:0}
+@media (max-width:56rem){
+  .rl .panes{grid-template-columns:1fr;gap:1rem;padding:1rem 0}
+  .rl .log li{grid-template-columns:3.4rem 3rem minmax(0,1fr);row-gap:0}
+  .rl .log .ph{display:none}
+  .rl .log .rs{grid-column:3}
+  .rl .log .note{grid-column:3}
+}
+
+/* ================= Blueprint (change 8) ================= */
+.bp{background:#0F2A4A;background-image:linear-gradient(#1C3A60 1px,transparent 1px),linear-gradient(90deg,#1C3A60 1px,transparent 1px);background-size:24px 24px;color:#F2F7FF}
+.bp .hd{display:flex;flex-wrap:wrap;align-items:baseline;gap:.25rem 1.5rem;padding:1.25rem 0 .5rem}
+.bp h1{font:700 clamp(1.8rem,4vw,2.6rem)/1.1 system-ui,sans-serif;letter-spacing:.01em;margin:0}
+.bp .no{font:600 .82rem/1.4 ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;color:#7CC4FF}
+.bp svg{display:block;width:100%;height:auto}
+.bp .sheet-w{display:block}.bp .sheet-t{display:none}
+@media (max-width:56rem){.bp .sheet-w{display:none}.bp .sheet-t{display:block;max-width:26rem;margin:0 auto}}
+.bp svg text{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:#F2F7FF}
+.bp .frame{fill:rgb(15 42 74/.94);stroke:#7CC4FF;stroke-width:2}
+.bp .zone{fill:none;stroke:#7CC4FF;stroke-width:1.5;stroke-dasharray:8 6}
+.bp .zl{fill:#7CC4FF;font-size:13px;letter-spacing:.02em}
+.bp .box{fill:#123358;stroke:#B8CCE6;stroke-width:1.2}
+.bp .bn{fill:#FFD27A;font-size:15px;font-weight:700}
+.bp .bt{font-size:14px}
+.bp .lead{stroke:#FFD27A;stroke-width:1.5;fill:none}
+.bp .ball{fill:#0F2A4A;stroke:#FFD27A;stroke-width:2}
+.bp .bl{fill:#FFD27A;font-size:14px;font-weight:700}
+.bp .dim{stroke:#B8CCE6;stroke-width:1}
+.bp .tb{fill:#0F2A4A;stroke:#7CC4FF;stroke-width:1.5}
+.bp .tbk{fill:#7CC4FF;font-size:11px;letter-spacing:.1em}
+.bp .tbv{font-size:14px}
+.bp .grid{fill:#7CC4FF;font-size:12px}
+
+/* ================= Vault (change 9) ================= */
+.vt{background:#13201C;color:#ECE6D8;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+.vt a{color:#D9B26A}
+.vt .hero{display:grid;grid-template-columns:auto 1fr auto;gap:1.75rem;align-items:center;padding:2rem 0 1.25rem}
+.vt .seal{width:152px;height:152px;border-radius:50%;border:3px solid #D9B26A;outline:2px solid #D9B26A;outline-offset:6px;margin:8px;overflow:hidden}
+.vt .seal img{width:100%;height:100%;object-fit:cover;display:block}
+.vt .k{font:600 .8rem/1.4 system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#D9B26A;margin:0}
+.vt h1{font:700 clamp(2.2rem,5vw,3.8rem)/1.02 Charter,"Bitstream Charter",Cambria,Georgia,serif;margin:.2rem 0 .4rem}
+.vt .lede{margin:0;max-width:36rem;color:#D3CCBC}
+.vt .status{font:.85rem/1.6 ui-monospace,monospace;color:#8FD3B8;border:1px solid #3B5249;padding:.6rem .8rem;border-radius:6px;margin:0;white-space:nowrap}
+.vt .doors{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;list-style:none;padding:0;margin:0 0 1.5rem;position:relative}
+.vt .door{border:1px solid #D9B26A;border-radius:10px;padding:.9rem;background:linear-gradient(180deg,#1A2B26,#13201C);position:relative}
+.vt .door::before{content:"";position:absolute;right:.8rem;top:.8rem;width:1.6rem;height:1.6rem;border:2px solid #D9B26A;border-radius:50%}
+.vt .door h2{font:700 1.1rem/1.2 Charter,Georgia,serif;margin:.15rem 2.2rem .5rem 0}
+.vt .door ol{margin:0;padding:0;list-style:none}
+.vt .door li{display:flex;gap:.5rem;padding:.3rem 0;border-top:1px solid #2C3F38;font-size:.92rem;line-height:1.35}
+.vt .door li b{color:#D9B26A;min-width:1.4rem}
+.vt .chip{display:inline-block;font:.72rem/1.5 ui-monospace,monospace;border:1px solid #8FD3B8;color:#8FD3B8;border-radius:999px;padding:0 .45rem;margin-left:.25rem;white-space:nowrap}
+.vt .chip.lock{border-color:#D9B26A;color:#D9B26A}
+.vt .fpline{font:.85rem/1.5 ui-monospace,monospace;color:#8FD3B8;text-align:center;margin:-.75rem 0 1.25rem}
+@media (max-width:56rem){
+  .vt .hero{grid-template-columns:auto 1fr;gap:1rem;padding:1.25rem 0 1rem}
+  .vt .seal{width:88px;height:88px;outline-offset:4px;margin:6px}
+  .vt .status{grid-column:1/-1;white-space:normal}
+  .vt .doors{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== Broadsheet ===================== -->
+<p class="label">Broadsheet: the front page, with the run as Plate 1</p>
+<section class="d bs"><div class="wrap">
+  <div class="mast"><b>A profile</b></div>
+  <div class="dl"><span>London</span><span>The SGit × Ruflo run, in twelve steps</span><span>Facts read 18 November 2026</span></div>
+  <div class="front">
+    <div>
+      <p class="kick">Enterprise AI leader, London [1]</p>
+      <h1>Mondweep Chakravorty</h1>
+      <figure class="por"><img src="../../../../../src/assets/photo/mondweep-chakravorty.png" width="200" height="200" alt="Mondweep Chakravorty"><figcaption>Mondweep Chakravorty</figcaption></figure>
+      <p class="sf">Through DxSure Ltd, he advises on and builds agentic AI systems. His work draws on two decades in financial services, automotive, energy and technology, from HSBC to Jaguar Land Rover. [1]</p>
+    </div>
+    <div>
+      <p class="plate-h">Plate 1. Memory saved, the project deleted, the memory back</p>
+      <ol class="plate" aria-describedby="bs-cap">
+        <li><b>1</b><span>Set up</span></li><li><b>2</b><span>Set up</span></li><li><b>3</b><span>Set up</span></li>
+        <li class="sg"><b>4</b><span>Safeguard 1</span></li><li class="vlt"><b>5</b><span>Vault written</span></li><li class="sg"><b>6</b><span>Safeguard 2</span></li>
+        <li><b>7</b><span>Loss</span></li><li class="vlt"><b>8</b><span>Vault read</span></li><li><b>9</b><span>Restore</span></li>
+        <li><b>10</b><span>Restore</span></li><li class="sg"><b>11</b><span>Safeguard 3</span></li><li><b>12</b><span>Check</span></li>
+      </ol>
+      <p class="plate-k">Red: a safeguard tested at its step. Hatched: the encrypted vault is used. The fingerprint at 5 equals the fingerprint at 8. [2]</p>
+    </div>
+    <div>
+      <p class="cap-h">The steps</p>
+      <ol class="cap" id="bs-cap">
+        <li>A real, pinned runtime</li><li>Define the mandate</li><li>Store two facts through Ruflo</li>
+        <li>Try something outside its permission: <em>refused</em></li><li>Save an encrypted recovery point</li>
+        <li>Approval means stop: <em>stopped</em></li><li>Remove the original workspace</li><li>Restore in a fresh process</li>
+        <li>Ask Ruflo what it remembers</li><li>A missing fact stays missing</li>
+        <li>Change the saved copy, try again: <em>rejected</em></li><li>What this run proves</li>
+      </ol>
+    </div>
+  </div>
+</div></section>
+
+<!-- ===================== Run log ===================== -->
+<p class="label">Run log: story on the left, the log on the right</p>
+<section class="d rl"><div class="wrap"><div class="panes">
+  <div class="story">
+    <p class="tag"># a design of this site; nothing here runs</p>
+    <h1>Mondweep Chakravorty</h1>
+    <p>Enterprise AI leader, London. [1]</p>
+    <p>Through DxSure Ltd he advises on and builds agentic AI systems. [1]</p>
+    <p>His SGit × Ruflo run: memory saved encrypted, the project deleted, the memory restored in a fresh process. [2]</p>
+    <p><a class="btn p" href="#">See the proof of concept</a><a class="btn" href="#">Work with him</a></p>
+  </div>
+  <div class="term">
+    <div class="tbar"><i></i><i></i><i></i><span>sgit-ruflo run, 12 steps, video 104.7 s [2]</span></div>
+    <ol class="log" aria-label="The twelve steps of the run, with video times and results">
+      <li><span class="tm">[0:09]</span><span class="no">01/12</span><span class="ph">setup</span><span class="ti">A real, pinned runtime</span><span class="rs"></span><span class="note">ruflo --version returns v3.56.10</span></li>
+      <li><span class="tm">[ -- ]</span><span class="no">02/12</span><span class="ph">setup</span><span class="ti">Define the mandate</span><span class="rs"></span><span class="note">4 policy rows; unsupported or ambiguous policies fail closed</span></li>
+      <li><span class="tm">[0:21]</span><span class="no">03/12</span><span class="ph">setup</span><span class="ti">Store two facts through Ruflo</span><span class="rs"></span></li>
+      <li><span class="tm">[0:32]</span><span class="no">04/12</span><span class="ph">save</span><span class="ti">Try something outside its permission</span><span class="rs ok">PASS</span><span class="note">safeguard 1: refused, PermissionError</span></li>
+      <li><span class="tm">[ -- ]</span><span class="no">05/12</span><span class="ph">save</span><span class="ti">Save an encrypted recovery point</span><span class="rs"></span><span class="note">vault: written</span></li>
+      <li><span class="tm">[0:45]</span><span class="no">06/12</span><span class="ph">save</span><span class="ti">Approval means stop</span><span class="rs bl">BLOCKED</span><span class="note">safeguard 2: checkpoint retained</span></li>
+      <li><span class="tm">[0:51]</span><span class="no">07/12</span><span class="ph">restore</span><span class="ti">Remove the original workspace</span><span class="rs"></span></li>
+      <li><span class="tm">[ -- ]</span><span class="no">08/12</span><span class="ph">restore</span><span class="ti">Restore in a fresh process</span><span class="rs ok">PASS</span><span class="note">vault: read; SHA-256 same as step 5</span></li>
+      <li><span class="tm">[1:04]</span><span class="no">09/12</span><span class="ph">restore</span><span class="ti">Ask Ruflo what it remembers</span><span class="rs ok">PASS 2/2</span></li>
+      <li><span class="tm">[1:14]</span><span class="no">10/12</span><span class="ph">restore</span><span class="ti">A missing fact stays missing</span><span class="rs"></span><span class="note">Key not found</span></li>
+      <li><span class="tm">[1:20]</span><span class="no">11/12</span><span class="ph">check</span><span class="ti">Change the saved copy, try again</span><span class="rs bl">BLOCKED</span><span class="note">safeguard 3: ValueError; vault: read and rejected</span></li>
+      <li><span class="tm">[1:26]</span><span class="no">12/12</span><span class="ph">check</span><span class="ti">What this run proves</span><span class="rs nv">NOT VALIDATED</span><span class="note">recall by meaning; embeddings were off</span></li>
+    </ol>
+    <p class="foot">[mm:ss] is the time in his video; [ -- ] means the video summary gives none. Results from the run's own summary, set beside the step they describe. [2]</p>
+  </div>
+</div></div></section>
+
+<!-- ===================== Blueprint ===================== -->
+<p class="label">Blueprint: one drawn sheet; zones are the phases, balloons are the safeguards</p>
+<section class="d bp"><div class="wrap">
+  <div class="hd"><h1>Mondweep Chakravorty</h1><span class="no">Sheet 01 of 01: the SGit × Ruflo run</span></div>
+  <svg class="sheet-w" viewBox="0 0 1200 600" role="img" aria-labelledby="bpw-t bpw-d">
+    <title id="bpw-t">Drawing of the SGit × Ruflo run</title>
+    <desc id="bpw-d">Four zones: A, set up, steps 1 to 3; B, save under the policy, steps 4 to 6; C, lose it and bring it back, steps 7 to 10; D, check and conclude, steps 11 and 12. Balloons mark the three safeguards at steps 4, 6 and 11. A dimension line from step 5 to step 8 reads: SHA-256 equal. The schedule of steps below the drawing lists them in full.</desc>
+    <rect class="frame" x="10" y="10" width="1180" height="580"/>
+    <text class="grid" x="160" y="30">A</text><text class="grid" x="430" y="30">B</text><text class="grid" x="720" y="30">C</text><text class="grid" x="980" y="30">D</text>
+    <text class="grid" x="20" y="160">1</text><text class="grid" x="20" y="330">2</text><text class="grid" x="20" y="500">3</text>
+    <!-- zones -->
+    <rect class="zone" x="40" y="60" width="270" height="380"/><text class="zl" x="52" y="84">ZONE A  SET UP</text>
+    <rect class="zone" x="325" y="60" width="270" height="380"/><text class="zl" x="337" y="84">ZONE B  SAVE UNDER THE POLICY</text>
+    <rect class="zone" x="610" y="60" width="300" height="380"/><text class="zl" x="622" y="84">ZONE C  LOSE IT, BRING IT BACK</text>
+    <rect class="zone" x="925" y="60" width="245" height="380"/><text class="zl" x="937" y="84">ZONE D  CHECK, CONCLUDE</text>
+    <!-- boxes -->
+    <g>
+      <rect class="box" x="55" y="110" width="240" height="64"/><text class="bn" x="67" y="134">01</text><text class="bt" x="67" y="158">A real, pinned runtime</text>
+      <rect class="box" x="55" y="210" width="240" height="64"/><text class="bn" x="67" y="234">02</text><text class="bt" x="67" y="258">Define the mandate</text>
+      <rect class="box" x="55" y="310" width="240" height="64"/><text class="bn" x="67" y="334">03</text><text class="bt" x="67" y="358">Store two facts</text>
+      <rect class="box" x="340" y="110" width="240" height="64"/><text class="bn" x="352" y="134">04</text><text class="bt" x="352" y="158">Outside its permission</text>
+      <rect class="box" x="340" y="210" width="240" height="64"/><text class="bn" x="352" y="234">05</text><text class="bt" x="352" y="258">Encrypted recovery point</text>
+      <rect class="box" x="340" y="310" width="240" height="64"/><text class="bn" x="352" y="334">06</text><text class="bt" x="352" y="358">Approval means stop</text>
+      <rect class="box" x="625" y="100" width="270" height="56"/><text class="bn" x="637" y="122">07</text><text class="bt" x="637" y="144">Remove the workspace</text>
+      <rect class="box" x="625" y="180" width="270" height="56"/><text class="bn" x="637" y="202">08</text><text class="bt" x="637" y="224">Restore, fresh process</text>
+      <rect class="box" x="625" y="260" width="270" height="56"/><text class="bn" x="637" y="282">09</text><text class="bt" x="637" y="304">Ask what it remembers</text>
+      <rect class="box" x="625" y="340" width="270" height="56"/><text class="bn" x="637" y="362">10</text><text class="bt" x="637" y="384">Missing stays missing</text>
+      <rect class="box" x="940" y="110" width="215" height="64"/><text class="bn" x="952" y="134">11</text><text class="bt" x="952" y="158">Change copy, retry</text>
+      <rect class="box" x="940" y="210" width="215" height="64"/><text class="bn" x="952" y="234">12</text><text class="bt" x="952" y="258">What this run proves</text>
+    </g>
+    <!-- dimension line 05 to 08 -->
+    <line class="dim" x1="580" y1="232" x2="625" y2="208"/><text x="455" y="198" font-size="13" fill="#B8CCE6">SHA-256 05 = 08</text>
+    <!-- safeguard balloons with leaders -->
+    <path class="lead" d="M568 110 L568 58"/><circle class="ball" cx="568" cy="40" r="18"/><text class="bl" x="568" y="45" text-anchor="middle">S1</text>
+    <path class="lead" d="M560 370 L560 470"/><circle class="ball" cx="560" cy="488" r="18"/><text class="bl" x="560" y="493" text-anchor="middle">S2</text>
+    <path class="lead" d="M1140 120 L1140 60"/><circle class="ball" cx="1140" cy="44" r="18"/><text class="bl" x="1140" y="49" text-anchor="middle">S3</text>
+    <!-- notes and title block -->
+    <text x="40" y="478" font-size="14" fill="#FFD27A">NOTES</text>
+    <text x="40" y="500" font-size="13">S1 step 04: request outside its permission refused.</text>
+    <text x="40" y="520" font-size="13">S2 step 06: deletion that needs approval stopped.</text>
+    <text x="40" y="540" font-size="13">S3 step 11: tampered checkpoint rejected.</text>
+    <text x="40" y="560" font-size="13">Recall by meaning: NOT VALIDATED (embeddings off).</text>
+    <rect class="tb" x="760" y="455" width="410" height="120"/>
+    <line class="tb" x1="760" y1="495" x2="1170" y2="495"/><line class="tb" x1="760" y1="535" x2="1170" y2="535"/><line class="tb" x1="965" y1="495" x2="965" y2="575"/>
+    <text class="tbk" x="772" y="472">SUBJECT</text><text class="tbv" x="772" y="488">Mondweep Chakravorty: SGit × Ruflo run</text>
+    <rect x="1118" y="461" width="42" height="28" fill="none" stroke="#FFD27A" stroke-width="2"/><text x="1139" y="481" font-size="15" font-weight="700" fill="#FFD27A" text-anchor="middle">MC</text>
+    <text class="tbk" x="772" y="512">DRAWN BY</text><text class="tbv" x="772" y="528">the AgentiCCells cell</text>
+    <text class="tbk" x="977" y="512">STEPS, SAFEGUARDS</text><text class="tbv" x="977" y="528">12, 3</text>
+    <text class="tbk" x="772" y="552">VERSION</text><text class="tbv" x="772" y="568">__VERSION__</text>
+    <text class="tbk" x="977" y="552">FACTS READ</text><text class="tbv" x="977" y="568">18 Nov 2026</text>
+  </svg>
+  <svg class="sheet-t" viewBox="0 0 360 640" role="img" aria-labelledby="bpt-t">
+    <title id="bpt-t">Drawing of the SGit × Ruflo run, for a narrow screen; the schedule of steps below lists every step</title>
+    <rect class="frame" x="4" y="4" width="352" height="632"/>
+    <rect class="zone" x="16" y="20" width="328" height="128"/><text class="zl" x="26" y="40">A  SET UP</text>
+    <text class="bt" x="26" y="70"><tspan class="bn">01</tspan> A real, pinned runtime</text>
+    <text class="bt" x="26" y="100"><tspan class="bn">02</tspan> Define the mandate</text>
+    <text class="bt" x="26" y="130"><tspan class="bn">03</tspan> Store two facts</text>
+    <rect class="zone" x="16" y="160" width="328" height="128"/><text class="zl" x="26" y="180">B  SAVE UNDER THE POLICY</text>
+    <text class="bt" x="26" y="210"><tspan class="bn">04</tspan> Outside its permission</text><circle class="ball" cx="318" cy="205" r="14"/><text class="bl" x="318" y="210" text-anchor="middle">S1</text>
+    <text class="bt" x="26" y="240"><tspan class="bn">05</tspan> Encrypted recovery point</text>
+    <text class="bt" x="26" y="270"><tspan class="bn">06</tspan> Approval means stop</text><circle class="ball" cx="318" cy="265" r="14"/><text class="bl" x="318" y="270" text-anchor="middle">S2</text>
+    <rect class="zone" x="16" y="300" width="328" height="158"/><text class="zl" x="26" y="320">C  LOSE IT, BRING IT BACK</text>
+    <text class="bt" x="26" y="350"><tspan class="bn">07</tspan> Remove the workspace</text>
+    <text class="bt" x="26" y="380"><tspan class="bn">08</tspan> Restore, fresh process</text>
+    <text class="bt" x="26" y="410"><tspan class="bn">09</tspan> Ask what it remembers</text>
+    <text class="bt" x="26" y="440"><tspan class="bn">10</tspan> Missing stays missing</text>
+    <path class="dim" d="M8 236 L8 376"/><text x="12" y="300" font-size="11" fill="#B8CCE6" transform="rotate(-90 12 300)">SHA-256 05 = 08</text>
+    <rect class="zone" x="16" y="470" width="328" height="98"/><text class="zl" x="26" y="490">D  CHECK, CONCLUDE</text>
+    <text class="bt" x="26" y="520"><tspan class="bn">11</tspan> Change copy, retry</text><circle class="ball" cx="318" cy="515" r="14"/><text class="bl" x="318" y="520" text-anchor="middle">S3</text>
+    <text class="bt" x="26" y="550"><tspan class="bn">12</tspan> What this run proves</text>
+    <rect class="tb" x="16" y="580" width="328" height="44"/><text class="tbk" x="26" y="597">DRAWN BY THE AGENTICCELLS CELL</text><text class="tbv" x="26" y="615">__VERSION__, facts read 18 Nov 2026</text>
+  </svg>
+</div></section>
+
+<!-- ===================== Vault ===================== -->
+<p class="label">Vault: the run as four checkpoint doors</p>
+<section class="d vt"><div class="wrap">
+  <div class="hero">
+    <div class="seal"><img src="../../../../../src/assets/photo/mondweep-chakravorty.png" width="200" height="200" alt="Mondweep Chakravorty"></div>
+    <div>
+      <p class="k">Enterprise AI leader, London [1]</p>
+      <h1>Mondweep Chakravorty</h1>
+      <p class="lede">He saved an agent's memory as an encrypted checkpoint, deleted the project, and brought the memory back in a fresh process. [2]</p>
+    </div>
+    <p class="status">checkpoint: encrypted<br>policy: ABP, enforce mode<br>sha256 at 5 = sha256 at 8</p>
+  </div>
+  <ol class="doors" aria-label="The run in four phases">
+    <li class="door"><p class="k">Door 1</p><h2>Set up</h2><ol>
+      <li><b>1</b><span>A real, pinned runtime</span></li><li><b>2</b><span>Define the mandate</span></li><li><b>3</b><span>Store two facts through Ruflo</span></li></ol></li>
+    <li class="door"><p class="k">Door 2</p><h2>Save under the policy</h2><ol>
+      <li><b>4</b><span>Try something outside its permission <span class="chip lock">safeguard 1</span></span></li>
+      <li><b>5</b><span>Save an encrypted recovery point <span class="chip">vault written</span></span></li>
+      <li><b>6</b><span>Approval means stop <span class="chip lock">safeguard 2</span></span></li></ol></li>
+    <li class="door"><p class="k">Door 3</p><h2>Lose it and bring it back</h2><ol>
+      <li><b>7</b><span>Remove the original workspace</span></li>
+      <li><b>8</b><span>Restore in a fresh process <span class="chip">vault read</span></span></li>
+      <li><b>9</b><span>Ask Ruflo what it remembers</span></li><li><b>10</b><span>A missing fact stays missing</span></li></ol></li>
+    <li class="door"><p class="k">Door 4</p><h2>Check and conclude</h2><ol>
+      <li><b>11</b><span>Change the saved copy, try again <span class="chip lock">safeguard 3</span> <span class="chip">vault read, rejected</span></span></li>
+      <li><b>12</b><span>What this run proves</span></li></ol></li>
+  </ol>
+  <p class="fpline">The vault is used in three steps of twelve: written in 5, read in 8, read and rejected in 11. [3]</p>
+</div></section>
+</body>
+</html>

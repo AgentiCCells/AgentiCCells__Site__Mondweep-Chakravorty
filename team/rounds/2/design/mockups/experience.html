@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mock-up: Career page</title>
+<!-- Round 2 design mock-up, change 5: /experience/ as a career page, from the long bio in ruv.sgit.ai's
+     data/providers.json (research facts F09 to F12 and F14), cleared by Dinis at about 10:50 UTC, 18 November 2026.
+     Proposal, not the site. Wording follows the source; the writer sets the final words in data/site.mjs.
+     The source gives an order and two dates (September 2024; 2025), not a year for each role, so the path is
+     drawn as an ordered sequence, not a dated timeline. Every item cites providers-data [6]. -->
+<style>
+:root{--bg:#FAF8F4;--ink:#1C1B19;--muted:#4A4740;--accent:#1D5C63;--rule:#D8D2C6;--edge:#7A756C;--gold:#E8B04B;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;--serif:Charter,"Bitstream Charter",Cambria,Georgia,serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:1.0625rem/1.6 var(--sans)}
+.wrap{max-width:76rem;margin:0 auto;padding:0 1rem}
+sup{font-size:.7em;line-height:0;white-space:nowrap}
+.head{background:#0F3D42;color:#F6F1E7;padding:3rem 0 2.5rem}
+.head .k{font:700 .8rem/1.4 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin:0}
+.head h1{font:800 clamp(2.4rem,6vw,4.2rem)/1 var(--sans);letter-spacing:-.03em;margin:.4rem 0 .75rem}
+.head p{max-width:44rem;margin:0;color:#D6E4E1;font:1.2rem/1.45 var(--serif)}
+.path{list-style:none;margin:2.5rem 0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative}
+.path::before{content:"";position:absolute;left:0;right:0;top:1.05rem;height:3px;background:var(--accent)}
+.path li{position:relative;padding:2.6rem 1rem 0 0}
+.path li::before{content:"";position:absolute;left:0;top:.35rem;width:1.5rem;height:1.5rem;border-radius:50%;background:var(--bg);border:3px solid var(--accent)}
+.path li.now::before{background:var(--accent)}
+.path .when{font:700 .78rem/1.4 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.path h2{font:800 1.15rem/1.25 var(--sans);margin:.2rem 0 .35rem}
+.path p{margin:0;font-size:.95rem;color:var(--muted)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin:0 0 3rem}
+.card{background:#FFFFFF;border:1px solid var(--rule);border-radius:1rem;padding:1.25rem}
+.card h2{font:800 1.3rem/1.2 var(--sans);margin:0 0 .5rem}
+.card .k{font:700 .75rem/1.4 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0}
+.spec{display:grid;grid-template-columns:repeat(auto-fill,minmax(14rem,1fr));gap:.6rem;list-style:none;padding:0;margin:.75rem 0 0}
+.spec li{border-left:4px solid var(--gold);background:#FFFFFF;padding:.6rem .8rem;font-weight:600;line-height:1.35}
+.note{font-size:.92rem;color:var(--muted);max-width:48rem}
+@media (max-width:56rem){
+  .path{grid-template-columns:1fr;margin:1.75rem 0}
+  .path::before{left:.6rem;right:auto;top:0;bottom:0;width:3px;height:auto}
+  .path li{padding:0 0 1.25rem 2.5rem}.path li::before{top:.15rem}
+  .two{grid-template-columns:1fr;gap:1rem}
+}
+</style>
+</head>
+<body>
+<header class="head"><div class="wrap">
+  <p class="k">Career</p>
+  <h1>From core banking to agentic AI</h1>
+  <p>He began as a software engineer at HSBC Global Technology and has worked as an independent AI advisor through DxSure Ltd since September 2024.<sup>[6]</sup></p>
+</div></header>
+<main class="wrap">
+  <ol class="path" aria-label="His career, in the order the source gives">
+    <li><span class="when">First</span><h2>HSBC Global Technology</h2><p>Software engineer, on payments and core banking integration.<sup>[6]</sup></p></li>
+    <li><span class="when">Then</span><h2>London Business School</h2><p>An MBA.<sup>[6]</sup></p></li>
+    <li><span class="when">After the MBA</span><h2>Shell Energy, TalkTalk, Zafin</h2><p>Led transformation and delivery work; at Zafin, on core banking SaaS for major banks.<sup>[6]</sup></p></li>
+    <li><span class="when">Later</span><h2>Jaguar Land Rover, Lotus Technology</h2><p>Portfolio rationalisation, cloud foundations and connected experiences.<sup>[6]</sup></p></li>
+    <li class="now"><span class="when">Since September 2024</span><h2>DxSure Ltd</h2><p>Independent AI advisor: advisory, solution architecture and hands-on agentic builds (multi-agent orchestration, RAG, MCP and AI security).<sup>[6]</sup></p></li>
+  </ol>
+  <div class="two">
+    <section class="card"><p class="k">Teaching</p><h2>Johns Hopkins Agentic AI programme</h2><p>He mentors on the programme.<sup>[6]</sup></p></section>
+    <section class="card"><p class="k">Speaking, 2025</p><h2>CISO London Summit 2025</h2><p>He co-presented the keynote "Securing the Agentic Frontier", applying the OWASP MAESTRO threat-modelling framework to an agentic AI codebase.<sup>[6]</sup></p></section>
+  </div>
+  <h2>Specialisms, as listed</h2>
+  <ul class="spec">
+    <li>Agentic AI architecture (multi-agent, RAG, MCP)</li>
+    <li>Agentic AI security and threat modelling (MAESTRO)</li>
+    <li>Enterprise programme delivery and C-suite advisory</li>
+    <li>Financial services, core banking and payments</li>
+    <li>Automotive and digital transformation</li>
+    <li>Cloud platforms (AWS, GCP, Azure)</li>
+    <li>Agentic AI community building<sup>[6]</sup></li>
+  </ul>
+  <p class="note">From the bio on ruv.sgit.ai, drafted there for him to approve; Dinis Cruz cleared it for this site on 18 November 2026.</p>
+</main>
+</body>
+</html>
