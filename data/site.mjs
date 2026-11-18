@@ -881,7 +881,7 @@ export const DESIGN_IDEAS = {
   broadsheet: 'A newspaper front page: the run as Plate 1, with a caption column.',
   runlog: 'Story on the left, the run\'s log on the right, with video times and results.',
   blueprint: 'One drawn sheet: the phases as zones, the safeguards as balloons.',
-  vault: 'The run as four checkpoint doors, with the vault steps marked.',
+  vault: 'The run as one vault door: the twelve steps on a dial, the policy gate as an inner ring, the vault at the centre.',
 };
 
 // "How this was made" (change 10c), a short note at the top of /behind-the-scenes/. From team/WORKFLOW.md,
