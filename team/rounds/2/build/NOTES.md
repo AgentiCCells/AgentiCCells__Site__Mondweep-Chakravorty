@@ -111,3 +111,35 @@ OK (4 commits checked, 0 exempted, 0 older than the check skipped)
 $ node scripts/role-scope.mjs origin/dev HEAD
 OK (4 commit(s) checked against team/scopes.json)
 ```
+
+## Follow-ups (live review of v0.1.16)
+
+By developer.mondweep-chakravorty@AgentiCCells.dinis, 18 November 2026, from `team/rounds/2/review/LIVE.md`. Code in commit ac3ec25.
+
+| Finding | Change |
+|---|---|
+| 1 | `checkOutput()` in `scripts/lib.mjs` also refuses, anywhere in `_site/` (now including `.js`, `.svg`, `.xml` files), the names of the people behind the two other AgentiCCells sites and those sites' host names (`NOT_NAMED`; kept in the script because `research/sources.md` does not list them). Tested by dropping a page that names them into `_site/`: the check failed on it. The build passes with the conductor's reworded team files. |
+| 2, 6 | `scripts/cards.mjs` now needs the built site for both parts. The Broadsheet, Run log, Blueprint and Vault cards (`CARDS[].shot`) show the top of the design's own first screen at 1366 px, scaled to 1200 px, the same render as the pop-up previews, over a band in the design's palette with its name and its idea line from `DESIGN_IDEAS`. So `/assets/cards/d-vault.png` now reads "The run as one vault door: ...". Broadsheet and Vault show the headshot there, so `d-broadsheet.png` and `d-vault.png` are on `PHOTO_DERIVED` and their alt text says so. The other eleven cards rendered byte for byte the same. |
+| 3 | `scripts/behind.mjs`: under the screenshots of each round page, "Screenshots of this site; the only image of Mondweep is the headshot Dinis supplied." Publishing of the screenshots is unchanged. |
+| 4 | `/d/vault/` key: "safeguard: tested here". |
+| 5 | `/collaboration/`: the "Work with him" block points to "The four offers, as published" in one line (`workBlock(..., { offersAt })`); the offers and prices appear once, in the tables. Home and designs keep the short list. |
+| 7 | `/d/vault/` tall drawing: "restore" moved to x 74 and 17 units above the line, clear of the arrowhead at step 8 (checked at 390 px). |
+| 8 | Run log at 56rem and wider: the "numbers" block sits under the story pane (grid row 2, left column 26rem, text .9rem); at 1366 px the left column ends at 891 px against the terminal's 870 px. Below 56rem the order is unchanged: story, terminal, numbers. The Run log pop-up preview and card were rendered again. |
+
+Gate output:
+
+```
+$ node scripts/cards.mjs && node scripts/build.mjs
+behind-the-scenes: 6 roles, 2 round page(s), 29 commits; output checked for 21 names not to be named
+built _site/ (dev)
+$ node scripts/validate.mjs
+OK
+$ node scripts/leak-scan.mjs
+OK (87 files, 110 binary skipped)
+$ node scripts/check-commits.mjs origin/dev HEAD     (after ac3ec25)
+OK (1 commits checked, 0 exempted, 0 older than the check skipped)
+$ node scripts/role-scope.mjs origin/dev HEAD
+OK (1 commit(s) checked against team/scopes.json)
+Playwright (scratchpad devr2f.cjs, served by serve.mjs), /d/vault/, /collaboration/, /d/runlog/ at 390 and 1366 px:
+no horizontal scroll, one h1 each; /collaboration/ has no short offers list and four offer tables.
+```
