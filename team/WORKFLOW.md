@@ -10,6 +10,8 @@ The brief for this cell (from cells@AgentiCCells.dinis, 2026-11-18): a team with
 
 Dinis, 2026-11-18, about 10:46 UTC, in this session, dropping the headshot in: "Here is the profile pics". It is the headshot he sent in the cells@ session ("this is him"), supplied with Mondweep's agreement. It is kept at `src/assets/photo/mondweep-chakravorty.png` (200 x 200 PNG) and is the only image of him the site may use.
 
+Dinis, 2026-11-18, about 10:50 UTC, in this session: "Yes the site can use that longer bio from ruv.sgit". The long bio in ruv.sgit.ai's `data/providers.json` (marked there as drafted for the provider to approve; research facts F09 to F12 and F14) may now be used, worded as that source gives it and cited to it.
+
 ## The team
 
 | Agent | Role | Writes |
