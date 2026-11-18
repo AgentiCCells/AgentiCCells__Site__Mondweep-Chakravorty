@@ -27,7 +27,7 @@ Each change can be built, reviewed and released on its own. Where a change has p
 | 6 | Broadsheet: a front page, with the run as Plate 1 and a caption column | `/d/broadsheet/` | `mockups/designs.html` |
 | 7 | Run log: story on the left, the run's log on the right | `/d/runlog/` | `mockups/designs.html` |
 | 8 | Blueprint: one drawn sheet, phases as zones, safeguards as balloons | `/d/blueprint/` | `mockups/designs.html` |
-| 9 | Vault: the run as four checkpoint doors, his photo in the seal | `/d/vault/` | `mockups/designs.html` |
+| 9 | Vault: the run as one vault door (revised, see "Change 9, revised"), his photo in the seal | `/d/vault/` | `mockups/vault.html` |
 | 10 | Designs pop-up with large previews (10a), review follow-ups 5 and 6 (10b), "How this was made" (10c) | every page; `/behind-the-scenes/` | `mockups/dialog.html`; text below |
 
 Rules for all ten: system fonts only (no font files), no third-party scripts, styles or images, no image of him other than the one headshot, text contrast at least 4.5:1 (3:1 for large text), stand-alone targets at least 44 px, no horizontal scroll at 390 or 1366 px. I loaded every mock-up at 390 and 1366 px: `scrollWidth` equals the viewport width in all of them.
@@ -186,6 +186,19 @@ The rest of the page keeps its columns, now ordered: Who he is, Career (two line
 The "Checkpoint 1 to 6" section labels below are renamed to plain headings, so "checkpoint" keeps one meaning on the page.
 
 **Text alternative.** The doors are an `<ol>` of `<ol>`s, so the panels are the text.
+
+### Change 9, revised (review condition 29)
+
+Added 2026-11-18 by designer.mondweep-chakravorty@AgentiCCells.dinis, for the reviewer to see before the developer builds it. **Mock-up:** `mockups/vault.html`. It replaces the four bordered doors above.
+
+- **The idea: the run drawn as one vault door.** A round door in SVG: twelve step positions on a ring, read like a clock face (step 12 at the top), the four phases as arcs of the outer rim with their names on the arc (this site's grouping, said under the drawing). Inside, the **policy gate** as a brass ring, with a small drawn door where steps 4, 5, 6, 8 and 11 pass through it, and **gaps** where steps 3, 9 and 10 reach the memory file by Ruflo's own command line (F126; `POC.gatedSteps`, `POC.cliSteps`). Inside that, the memory file as a dotted ring, and the **vault** at the centre as a drawn door with a wheel.
+- **The vault's path.** Step 5 is an arrow into the vault ("save"), step 8 an arrow out of it ("restore"), step 11 runs to the vault and stops there ("rejected"); the three steps are filled brass (F115, F118, F121; `POC.vaultText`, F125).
+- **The safeguards as locked bolts** where the run is stopped: 4 ("refused") and 6 ("stopped") at the gate, 11 at the vault (F114, F116, F121; `POC.safeguards`).
+- **At 390 px** a tall, simpler drawing of the same thing: the steps in a column with the phase names as headings, the gate as a rail with gaps at 3, 9 and 10, the memory file as a dotted rail and the vault as a tall door on the right. Switch at 72rem.
+- **Text alternative:** each SVG has a `<title>` and `<desc>`; beside the drawing (below it at 390) the twelve steps as an `<ol>` by phase, with video times and tags ("policy gate", "Ruflo's command line, no gate", "vault written", "safeguard 1: refused"), and the fingerprint line under step 8 (no hash values). Under the drawing: a key, `POC.vaultText` [vault] and `POC.gateText` [policy-door].
+- **Kept:** palette (green-black `#13201C`, brass `#D9B26A`, mint `#8FD3B8`, cream `#ECE6D8`; text 7.4:1 or more), the headshot in the brass seal at 132 px (126 px image at 1366, 82 at 390), the kicker and lede. The status plate is dropped; its line is now in the list.
+- **Checked** with Playwright at 390 x 844 and 1366 x 768: `scrollWidth` equals the viewport width; the smallest SVG text renders at 14 px (the wide dial is drawn at 680 CSS px for 680 units; the tall one at 358 px for 358 units at 390).
+- **For the developer:** the dial's coordinates come from the step number (angle = step x 30 degrees), so it can be generated from `POC` in `scripts/designs.mjs` rather than hand-drawn.
 
 ### 10. Designs pop-up with large previews (10a), review follow-ups 5 and 6 (10b), "How this was made" (10c)
 
