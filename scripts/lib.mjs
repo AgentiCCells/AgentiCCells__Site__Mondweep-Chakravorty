@@ -62,11 +62,14 @@ export const PHOTO_PATH = '/assets/photo/mondweep-chakravorty.png';
 // scripts/leak-scan.mjs (unchanged) flags any unbroken hex string of 48 characters or more.
 export const PHOTO_SHA256 = '8e73169a0f0f0e9a 1eba76c43ec05511 1d9c79a01fd5f737 38d19734e8d848c5'.replace(/ /g, '');
 // The derived images that show his face, each rendered by scripts/cards.mjs from that one file and no
-// other (review position (a)): the home and Ledger link-preview cards, and the pop-up previews of the
-// three designs whose first screen shows the headshot. Any other image of him fails checkOutput().
+// other (review position (a)): the home and Ledger link-preview cards, the pop-up previews of the
+// three designs whose first screen shows the headshot, and the Broadsheet and Vault link-preview cards,
+// which are built from that same first screen (round 2 live review, finding 6). Any other image of him fails checkOutput().
 export const PHOTO_DERIVED = [
   '/assets/cards/home.png',
   '/assets/cards/d-ledger.png',
+  '/assets/cards/d-broadsheet.png',
+  '/assets/cards/d-vault.png',
   '/assets/designs/ledger.png',
   '/assets/designs/broadsheet.png',
   '/assets/designs/vault.png',
@@ -81,6 +84,8 @@ export const cardName = path => {
 // Words on each card (round 1 proposal section 4, conditions 34 and 35). Round 2: the home and Ledger
 // cards carry the headshot (photo: true; both are on PHOTO_DERIVED); every other card keeps the monogram.
 const LEDGER = DESIGNS[0];
+// The designs whose first screen shows the headshot (designs.mjs: photoImg() in the first screen).
+const SHOWS_PHOTO = ['ledger', 'broadsheet', 'vault'];
 export const CARDS = [
   { path: '/', kicker: 'Enterprise AI leader, London', big: 'Mondweep Chakravorty', line: 'Agentic AI systems, built and advised on through DxSure Ltd.', photo: true },
   { path: '/built/', kicker: 'What he has built', big: 'Mondweep Chakravorty', line: 'The SGit x Ruflo proof of concept and Ruflo PR #4239.' },
@@ -92,7 +97,9 @@ export const CARDS = [
   { path: '/ai/', kicker: 'Use with AI', big: 'This site as plain text', line: 'llms.txt, a Markdown copy of the site and its facts as JSON.' },
   { path: '/behind-the-scenes/', kicker: 'Behind the scenes', big: 'How this site is made', line: 'The team, its policies, every round and every commit.' },
   { path: '/d/', kicker: 'Designs', big: 'Five designs', line: 'The same facts and sources, five ways.' },
-  ...DESIGNS.map(d => ({ path: `/d/${d.id}/`, kicker: 'Designs', big: d.name, line: d.idea, pal: d.pal, photo: d.id === 'ledger' })),
+  // Round 2 live review, finding 6: every design but Ledger shows its own first screen (shot: true), taken
+  // from the built page as the pop-up previews are; Broadsheet and Vault show the headshot there.
+  ...DESIGNS.map(d => ({ path: `/d/${d.id}/`, kicker: 'Designs', big: d.name, line: d.idea, pal: d.pal, shot: d.id !== 'ledger', photo: SHOWS_PHOTO.includes(d.id) })),
 ].map(c => ({ pal: LEDGER.pal, ...c, name: cardName(c.path) }));
 for (const c of CARDS) if (c.photo && !PHOTO_DERIVED.includes(`/assets/cards/${c.name}.png`)) throw new Error(`card ${c.name} shows the headshot but is not on PHOTO_DERIVED`);
 export const cardAlt = c => `Link preview: ${c.kicker}. ${c.big}${c.photo ? ', with a photograph of him' : ''}. ${c.line}`.replace(/\.\./g, '.');
@@ -271,16 +278,18 @@ ${groups.map(g => `<li><b>${esc(g.group)}.</b> ${esc(g.items.map(i => `${i.name}
 // "Work with him" (round 2 change 4a, review conditions 17 to 19): the five kinds of project, the four
 // offers as published, how to enquire and what happens next (bulleted: the sources give no order).
 // One markup for every page and design; each design styles it. h: the heading level of its parts.
-export function workBlock(c, { h = 3, id = 'work' } = {}) {
+// offersAt: the id of a section on the same page that lists the offers in full; the block then points
+// to it in one line instead of listing them again (round 2 live review, finding 5).
+export function workBlock(c, { h = 3, id = 'work', offersAt = '' } = {}) {
   const W = D.WORK, E = W.enquire;
   return `<div class="work">
 <div class="work-what">
 <h${h} id="${id}-types">${esc(W.projectsHeading)}</h${h}>
 <ol class="types">${W.projects.map((p, i) => `<li><span>${esc(p)}${i === W.projects.length - 1 ? c.m(W.projectsSrc) : ''}</span></li>`).join('')}</ol>
-<h${h} id="${id}-offers">${esc(W.offersHeading)}</h${h}>
+${offersAt ? `<p class="offers-at"><a class="more inl" href="#${esc(offersAt)}">${esc(W.offersHeading.replace(/ \(.*\)$/, ''))}</a>: below, with every price.</p>` : `<h${h} id="${id}-offers">${esc(W.offersHeading)}</h${h}>
 <ul class="offers">
 ${W.offers.map(o => `<li><b>${esc(o.group)}${o.status ? ` <span class="tag">${esc(o.status)}</span>` : ''}</b> ${esc(o.line)}${c.m(o.src)}</li>`).join('\n')}
-</ul>
+</ul>`}
 </div>
 <div class="enquire">
 <h${h} id="${id}-how">${esc(E.heading)}</h${h}>
@@ -535,6 +544,9 @@ export function forbiddenNames() {
 // image file anywhere whose name names him; any page that references (img src, srcset, CSS url(),
 // og:image or twitter:image) an image that names him or sits under /assets/photo/ other than PHOTO_PATH;
 // the headshot shown without width and height 200.
+// Round 2 live review, finding 1: the people behind the other AgentiCCells sites, and those sites' host
+// names, are not named on this site either. research/sources.md does not list them, so they are kept here.
+const NOT_NAMED = [/Marc\s+Noah/i, /Yiheng\s+Wang/i, /marc-noah\.agenticcells\.site/i, /yiheng-wang\.agenticcells\.site/i];
 const NAMES_HIM = /mondweep|chakravorty|headshot|portrait|\bphoto/i;
 export function checkOutput() {
   const names = forbiddenNames();
@@ -563,9 +575,10 @@ export function checkOutput() {
     for (const m of s.matchAll(/<meta\s+(?:property|name)="(?:og:image|twitter:image)"\s+content="([^"]+)"/gi)) out.push({ u: m[1] });
     return out;
   };
-  for (const f of site.filter(f => /\.(html|md|txt|json|css)$/.test(f))) {
+  for (const f of site.filter(f => /\.(html|md|txt|json|css|js|svg|xml|webmanifest)$/.test(f))) {
     const s = readFileSync(f, 'utf8');
     for (const n of names) if (s.includes(n)) problems.push(`${f}: names "${n}", who is not to be named`);
+    for (const re of NOT_NAMED) { const m = s.match(re); if (m) problems.push(`${f}: names "${m[0]}", who is not to be named`); }
     if (!/\.(html|css)$/.test(f)) continue;
     for (const { u, tag } of refs(s)) {
       const p = u.replace(SITE, '').replace(/[?#].*$/, '');
@@ -579,5 +592,5 @@ export function checkOutput() {
     }
   }
   if (problems.length) throw new Error(`Output check failed:\n${problems.join('\n')}`);
-  return names.length;
+  return names.length + NOT_NAMED.length;
 }

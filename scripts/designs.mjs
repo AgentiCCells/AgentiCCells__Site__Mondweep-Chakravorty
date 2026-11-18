@@ -236,8 +236,11 @@ ${c.list()}
   const css = {
     vars: '--link:#7EE2A8;--focus:#F2C14E;--line:#2A3340;--strip-bg:#1B222C;--strip-ink:#D7DEE8;--strip-focus:#F2C14E',
     rules: `body{font-size:1rem;line-height:1.65}
-.panes{display:grid;grid-template-columns:minmax(0,22rem) minmax(0,1fr);gap:1.5rem;padding:1.5rem 0}
-.story{border:1px solid #3A4554;padding:1rem 1.1rem;align-self:start}
+.panes{display:grid;grid-template-columns:minmax(0,26rem) minmax(0,1fr);grid-template-rows:auto 1fr;gap:1.5rem;padding:1.5rem 0}
+.story{border:1px solid #3A4554;padding:1rem 1.1rem;align-self:start;grid-column:1;grid-row:1}
+.panes .term{grid-column:2;grid-row:1/span 2;align-self:start}
+.panes .blk{grid-column:1;grid-row:2;align-self:start;margin:0;font-size:.9rem;line-height:1.5}
+.panes .blk .kv{margin:0}.panes .blk .kv li{margin:.15rem 0}
 .story p{margin:.45rem 0}
 .tagl{color:#9AA6B5}
 h1{color:#7EE2A8;font-size:1.8rem;line-height:1.15;margin:.4rem 0 .6rem}
@@ -266,7 +269,8 @@ h3::before{content:"## " / "";color:#9AA6B5}
 .sources h2::before{content:"# " / ""}
 sup.mk a{font-family:var(--mono)}
 @media (max-width:56rem){
-  .panes{grid-template-columns:1fr;gap:1rem;padding:1rem 0}
+  .panes{grid-template-columns:1fr;grid-template-rows:none;gap:1rem;padding:1rem 0}
+  .story,.panes .term,.panes .blk{grid-column:1;grid-row:auto}
   .log li{grid-template-columns:3.6rem 3rem minmax(0,1fr)}
   .log .ph{display:none}
   .log .rs{grid-column:3}
@@ -291,9 +295,9 @@ ${P.steps.map(s => { const r = resultOf(s); const n = stepNote(s); return `<li><
 </ol>
 <p class="lfoot">[mm:ss] is the time in his video. ${c.t(P.resultsNote)} ${esc(P.phasesNote)}</p>
 </section>
-</div>
 <section class="blk" aria-labelledby="rl-num"><h2 id="rl-num">numbers</h2>
 <ul class="kv">${M.numbers.map(n => `<li><b>${esc(n.value)}</b> ${esc(n.label)}${c.m(n.src)}</li>`).join('')}</ul></section>
+</div>
 <section class="blk" aria-labelledby="rl-car"><h2 id="rl-car">career</h2>
 ${careerSummary(c)}
 <p><a class="more" href="${M.career.href}">${esc(M.career.linkText)}</a></p></section>
@@ -540,7 +544,7 @@ ${c.list()}
       const y = Y[s.n], g = sgOf(s);
       if (cli.has(s.n)) { const w = cliWord(s); o.push(`<line x1="42" y1="${y}" x2="192" y2="${y}" stroke="#ECE6D8" stroke-width="2" stroke-dasharray="6 5" ${w === 'writes' ? 'marker-end' : 'marker-start'}="url(#vtm)"/>`); lab.push(`<text class="pw cream" x="46" y="${y - 7}">${w}</text>`); }
       else if (vlt.has(s.n) && g) { o.push(`<line x1="42" y1="${y}" x2="224" y2="${y}" stroke="#D9B26A" stroke-width="3"/>${door(128, y, 12, 18)}${bolt(232, y, 0)}`); lab.push(`<text class="pw brass" x="46" y="${y - 7}">${sgWord(g)}</text>`); }
-      else if (vlt.has(s.n)) { const w = vaultWord(s); o.push(`<line x1="${w === 'restore' ? 44 : 42}" y1="${y}" x2="${w === 'restore' ? 248 : 246}" y2="${y}" stroke="#D9B26A" stroke-width="4" ${w === 'restore' ? 'marker-start' : 'marker-end'}="url(#vth)"/>${door(128, y, 12, 18)}`); lab.push(`<text class="pw brass" x="${w === 'restore' ? 64 : 46}" y="${y - 7}">${w}</text>`); }
+      else if (vlt.has(s.n)) { const w = vaultWord(s); o.push(`<line x1="${w === 'restore' ? 44 : 42}" y1="${y}" x2="${w === 'restore' ? 248 : 246}" y2="${y}" stroke="#D9B26A" stroke-width="4" ${w === 'restore' ? 'marker-start' : 'marker-end'}="url(#vth)"/>${door(128, y, 12, 18)}`); lab.push(`<text class="pw brass" x="${w === 'restore' ? 74 : 46}" y="${y - (w === 'restore' ? 17 : 7)}">${w}</text>`); }
       else if (g) { o.push(`<line x1="42" y1="${y}" x2="120" y2="${y}" stroke="#D9B26A" stroke-width="3"/>${bolt(128, y, 0)}`); lab.push(`<text class="pw brass" x="46" y="${y - 7}">${sgWord(g)}</text>`); }
       const fill = vlt.has(s.n), mem = gated.has(s.n) || cli.has(s.n);
       lab.push(`<circle cx="24" cy="${y}" r="16" fill="${fill ? '#D9B26A' : '#13201C'}" stroke="${mem || fill ? '#D9B26A' : '#6F8A7F'}" stroke-width="2"/><text class="nn${fill ? ' dk' : ''}" x="24" y="${y + 5.5}" text-anchor="middle">${s.n}</text>`);
@@ -627,7 +631,7 @@ ${tallSvg}
 <ul class="key" aria-label="Key">
 <li>${sw('<line x1="0" y1="8" x2="30" y2="8" stroke="#D9B26A" stroke-width="3"/><rect x="11" y="2" width="8" height="12" rx="1.5" fill="#13201C" stroke="#D9B26A" stroke-width="2"/>')}passes the policy gate, through a door</li>
 <li>${sw('<line x1="0" y1="8" x2="30" y2="8" stroke="#ECE6D8" stroke-width="2" stroke-dasharray="5 4"/>')}Ruflo's command line, through a gap</li>
-<li>${sw('<rect x="0" y="3" width="26" height="10" rx="2" fill="#D9B26A"/>')}safeguard: the run is stopped here</li>
+<li>${sw('<rect x="0" y="3" width="26" height="10" rx="2" fill="#D9B26A"/>')}safeguard: tested here</li>
 <li>${sw('<circle cx="8" cy="8" r="7" fill="#D9B26A"/>')}filled step: the vault is used</li>
 </ul>
 <p class="note">${c.t(P.vaultText)}</p>

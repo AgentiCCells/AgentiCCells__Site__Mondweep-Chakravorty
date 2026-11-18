@@ -224,7 +224,7 @@ ${g.items.map(i => `<tr><td>${esc(i.name)}</td><td class="num">${esc(i.priceText
 </section>`;
   const lede = c.t(C.intro[0]);
   emit('/collaboration/', `<section class="work-sec" aria-labelledby="c-work"><h2 id="c-work">${esc(D.WORK.heading)}</h2>
-${workBlock(c, { h: 3, id: 'cw' })}
+${workBlock(c, { h: 3, id: 'cw', offersAt: 'c-offers' })}
 <p>${c.t(C.projectsNote)}</p>
 </section>
 <section aria-labelledby="c-week"><h2 id="c-week">16 to 21 October 2026</h2>

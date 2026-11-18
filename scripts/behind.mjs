@@ -290,6 +290,8 @@ const gallery = n => {
     }).join('\n')}</ul>`;
   }).join('\n');
 };
+// Under each round page's screenshots (Dinis Cruz's decision on review finding 3, through the conductor).
+const SHOTS_NOTE = 'Screenshots of this site; the only image of Mondweep is the headshot Dinis supplied.';
 const roundFiles = n => walk(`team/rounds/${n}`).filter(f => /\.(md|html)$/.test(f)).sort();
 const roundCommits = n => commits.filter(c => c.round === n);
 
@@ -387,7 +389,7 @@ ${markdown(md, { base: 'team/rounds', oneH1: true })}
 <p>As written by each role, on GitHub (<a href="${BLOB}team/rounds/${n}.md">the report itself</a>):</p>
 ${files.length ? `<ul>${files.map(f => `<li><a class="more" href="${BLOB}${esc(f)}">${esc(f.slice(`team/rounds/${n}/`.length))}</a></li>`).join('')}</ul>` : '<p>None yet.</p>'}
 <h2>Screenshots</h2>
-${gallery(n) || '<p>None yet.</p>'}
+${gallery(n) ? `${gallery(n)}\n<p class="muted">${esc(SHOTS_NOTE)}</p>` : '<p>None yet.</p>'}
 <h2>Commits in this round</h2>
 ${rc.length ? `<ul class="timeline">${rc.map(commitRow).join('\n')}</ul>` : '<p>None yet.</p>'}
 `,

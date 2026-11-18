@@ -7,11 +7,15 @@
 //      in lib.mjs, the same list head() uses for og:image). The home and Ledger cards (CARDS[].photo, both
 //      on PHOTO_DERIVED) carry the headshot at its own 200 px on the teal field, read from the one file
 //      src/assets/photo/mondweep-chakravorty.png after checking its SHA-256; the proof of concept card
-//      shows the run's time strip; every other card the monogram MC.
+//      shows the run's time strip; the Broadsheet, Run log, Blueprint and Vault cards (CARDS[].shot) show
+//      that design's own first screen, taken from the built page the same way as the pop-up previews, over
+//      a band with the design's name and idea line (round 2 live review, findings 2 and 6; Broadsheet and
+//      Vault show the headshot there, so their cards are on PHOTO_DERIVED); every other card the monogram MC.
 //   2. src/assets/designs/<id>.png: a 960x600 preview of each design's first screen for the Designs
 //      pop-up, taken from the built _site/ served by a tiny local http server (1366x854 scaled down).
 //      Run the build first. Ledger, Broadsheet and Vault show the headshot; all three are on PHOTO_DERIVED.
 // Usage: node scripts/build.mjs && node scripts/cards.mjs [--cards-only|--thumbs-only]
+// Both parts need the built _site/ (the design cards are taken from it).
 // Uses Playwright from the session (no npm dependency of the site). Written by
 // developer.mondweep-chakravorty@AgentiCCells.dinis, round 1 (2026-11-18).
 import { createRequire } from 'node:module';
@@ -31,8 +35,9 @@ if (createHash('sha256').update(photoBuf).digest('hex') !== PHOTO_SHA256) throw 
 const photoUri = `data:image/png;base64,${photoBuf.toString('base64')}`;
 const stripCss = readFileSync('src/style.css', 'utf8').match(/\/\* ---------- the run, drawn[\s\S]*?(?=\.phases\{)/)[0];
 const rootCss = readFileSync('src/style.css', 'utf8').match(/:root\{[\s\S]*?\n\}/)[0];
-function cardHtml(c) {
+function cardHtml(c, shotUri) {
   if (c.photo && !PHOTO_DERIVED.includes(`/assets/cards/${c.name}.png`)) throw new Error(`card ${c.name} would show the headshot but is not on PHOTO_DERIVED`);
+  if (c.shot) return shotCard(c, shotUri);
   if (c.photo) return photoCard(c);
   if (c.figure) return stripCard(c);
   const p = c.pal;
@@ -53,6 +58,30 @@ body{background:${p.bg};color:${p.ink};font-family:${p.font};position:relative}
 <div class="main"><p class="k">${esc(c.kicker)}</p><p class="big">${esc(c.big)}</p><p class="line">${esc(c.line)}</p></div>
 <div class="art">${art}</div>
 <div class="foot"><span>${esc(host)}</span><span>${esc(c.path)}</span></div>
+</body></html>`;
+}
+
+// A design card: the top of the design's own first screen at 1366 px (scaled to 1200), over a band in its
+// palette with the design's name and its idea line from data/site.mjs.
+const SHOT_H = 410;
+function shotCard(c, shotUri) {
+  if (!shotUri) throw new Error(`card ${c.name} needs the design's first screen`);
+  const p = c.pal;
+  return `<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><style>
+*{box-sizing:border-box;margin:0}html,body{width:1200px;height:630px;overflow:hidden}
+body{background:${p.bg};color:${p.ink};font-family:${p.font};position:relative}
+.shot{position:absolute;left:0;top:0;width:1200px;height:${SHOT_H}px;display:block}
+.bar{position:absolute;left:0;right:0;top:${SHOT_H}px;height:10px;background:${p.accent}}
+.band{position:absolute;left:56px;right:56px;top:${SHOT_H + 30}px}
+.k{font:700 20px/1.2 system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:${p.muted}}
+.big{font-weight:700;font-size:44px;line-height:1.05;margin-top:8px}
+.line{font-size:${c.line.length > 90 ? 23 : 26}px;line-height:1.3;margin-top:10px}
+.foot{position:absolute;right:56px;top:${SHOT_H + 30}px;font:600 20px/1.2 system-ui,sans-serif;color:${p.muted}}
+</style></head><body>
+<img class="shot" src="${shotUri}" width="1200" height="${SHOT_H}" alt="">
+<div class="bar"></div>
+<div class="band"><p class="k">${esc(c.kicker)}</p><p class="big">${esc(c.big)}</p><p class="line">${esc(c.line)}</p></div>
+<p class="foot">${esc(host)}${esc(c.path)}</p>
 </body></html>`;
 }
 
@@ -96,35 +125,44 @@ ${stripCss}
 }
 
 const browser = await chromium.launch();
+if (!existsSync('_site/index.html')) throw new Error('build the site first: node scripts/build.mjs');
+const T = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.png': 'image/png', '.jpg': 'image/jpeg', '.svg': 'image/svg+xml' };
+const server = createServer(async (q, r) => {
+  let p = join('_site', decodeURIComponent(q.url.split('?')[0]));
+  try { if ((await stat(p)).isDirectory()) p = join(p, 'index.html'); r.writeHead(200, { 'content-type': T[extname(p)] || 'application/octet-stream' }); r.end(await readFile(p)); } catch { r.writeHead(404); r.end(); }
+});
+await new Promise(ok => server.listen(0, '127.0.0.1', ok));
+const base = `http://127.0.0.1:${server.address().port}`;
+// The same render as the pop-up previews: the built page at 1366 px wide, scaled down.
+const shotPage = await browser.newPage({ viewport: { width: 1366, height: 854 }, deviceScaleFactor: 960 / 1366 });
+const firstScreen = async href => { await shotPage.goto(base + href, { waitUntil: 'load' }); return shotPage; };
 if (only !== '--thumbs-only') {
   mkdirSync('src/assets/cards', { recursive: true });
+  const cardShot = await browser.newPage({ viewport: { width: 1366, height: Math.round(SHOT_H * 1366 / 1200) }, deviceScaleFactor: 1200 / 1366 });
   const page = await browser.newPage({ viewport: { width: 1200, height: 630 }, deviceScaleFactor: 1 });
   for (const c of CARDS) {
-    await page.setContent(cardHtml(c));
+    let uri = '';
+    if (c.shot) {
+      await cardShot.goto(base + c.path, { waitUntil: 'load' });
+      uri = `data:image/png;base64,${(await cardShot.screenshot({ type: 'png' })).toString('base64')}`;
+    }
+    await page.setContent(cardHtml(c, uri), { waitUntil: 'load' });
     const f = `src/assets/cards/${c.name}.png`;
     await page.screenshot({ path: f, type: 'png' });
     console.log(`${f}  ${Math.round(statSync(f).size / 1024)} KB`);
   }
   await page.close();
+  await cardShot.close();
 }
 if (only !== '--cards-only') {
-  if (!existsSync('_site/index.html')) throw new Error('build the site first: node scripts/build.mjs');
-  const T = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.png': 'image/png', '.jpg': 'image/jpeg', '.svg': 'image/svg+xml' };
-  const server = createServer(async (q, r) => {
-    let p = join('_site', decodeURIComponent(q.url.split('?')[0]));
-    try { if ((await stat(p)).isDirectory()) p = join(p, 'index.html'); r.writeHead(200, { 'content-type': T[extname(p)] || 'application/octet-stream' }); r.end(await readFile(p)); } catch { r.writeHead(404); r.end(); }
-  });
-  await new Promise(ok => server.listen(0, '127.0.0.1', ok));
-  const base = `http://127.0.0.1:${server.address().port}`;
   mkdirSync('src/assets/designs', { recursive: true });
-  const page = await browser.newPage({ viewport: { width: 1366, height: 854 }, deviceScaleFactor: 960 / 1366 });
   for (const d of DESIGNS) {
-    await page.goto(base + (d.id === 'ledger' ? '/' : d.href), { waitUntil: 'load' });
+    const page = await firstScreen(d.id === 'ledger' ? '/' : d.href);
     const f = `src/assets/designs/${d.id}.png`;
     await page.screenshot({ path: f, type: 'png' });
     console.log(`${f}  ${Math.round(statSync(f).size / 1024)} KB`);
   }
-  await page.close();
-  server.close();
 }
+await shotPage.close();
+server.close();
 await browser.close();
