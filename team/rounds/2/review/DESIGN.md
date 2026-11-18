@@ -86,3 +86,21 @@
 ## Does it meet "as good and creative as the other ACC sites"?
 
 Mostly, yes. The home now has what the model sites have: a colour field, the photograph with an offset block and pinned caption, a very large name, four stat tiles, bands and a serif pull quote. Broadsheet (Plate 1 and a caption column), Run log (story and terminal, as his own video does it, F109) and Blueprint (zones, balloons, a title block) each have a first screen the others do not. Vault does not yet (condition 29). The home's run figure is a placeholder in the mock-up, so the build of change 2 is reviewed on the live site in `LIVE.md`.
+
+## Change 9, revised: verdict
+
+**Pass with conditions.** Reviewed 18 November 2026: `mockups/vault.html` and "Change 9, revised" in `PROPOSAL.md` (commit 8df07b0), against `research/facts.json` and `data/site.mjs` (`POC.vaultText`, `gatedSteps`, `cliSteps`). Playwright at 390 x 844, 1024, 1152 and 1366 x 768, with and without JavaScript. Screenshots stay in the session scratchpad.
+
+**It is now a design of its own.** The run is one round vault door: twelve steps on a clock face, the phases on the rim, the policy gate as a brass ring with doors and gaps, the memory file as a dotted ring, the vault at the centre with save, restore and rejected drawn as paths. No other design draws the run this way (Broadsheet plates, Run log terminal, Blueprint zones). Condition 29 is met.
+
+**Checked and passed.**
+- Facts: the twelve titles match F54 and the times match F111 to F122 (0:09 to 1:26). Gate doors on 4, 5, 6, 8 and 11; gaps with dashed command-line arrows on 3 (writes), 9 and 10 (reads), as F126 and F65 say. Safeguard bolts on 4 and 6 at the gate and 11 at the vault (F114, F116, F121, F123). The vault is entered at 5, left at 8 and reached but refused at 11, matching `POC.vaultText`; F125's "touched when you save and when you restore" is quoted and step 11 is drawn as a rejected read, not a use. "As his README says" is backed by F65 and F132. Phases are labelled as this site's grouping.
+- Rules: only the one headshot, 200 x 200 file, shown at 126 px at 1366 and 82 px at 390 (under 132), `alt` set, no caption repeating it. No hash values (the step 8 line names SHA-256 only), no "sealed", no em dashes, no hype words, no other person named, no scripts.
+- Contrast: all text 7.4:1 or more (phase labels on the rim 7.9 and 9.8, brass labels 9.1, mint 10.5, numbers on filled nodes 8.4); node rings for steps 1, 2, 7 and 12 are 4.8:1 (3:1 needed).
+- SVG text: smallest renders at 14 px (dial at 680 px for 680 units; tall drawing 358 px at 390, 480 px at 1024).
+- Layout: `scrollWidth` equals the viewport at all four widths; no overlapping labels in either drawing. The step list is the visible text alternative, and each SVG has `<title>` and `<desc>`.
+
+32. (W) Step 11's tag reads "safeguard 3" with no word; make it "safeguard 3: rejected" (F123 "tampered copy rejected"), to match "refused" and "stopped" on 4 and 6.
+33. (D) Generate both drawings from `POC.steps`, `gatedSteps`, `cliSteps`, `vaultSteps` and `safeguards` in `scripts/designs.mjs`, as proposed; no hand-placed step list. The design parity check must still see every step, time and tag in the `<ol>`.
+34. (D) The key's "passes the policy gate" swatch is a plain line, but the drawing shows a small door on the gate; draw the door in the swatch. Give `.tag.vault` its own style (it has none in the mock-up) so "vault written / read / read, rejected" is distinct from the gate tags.
+35. (D) Keep the halo (`paint-order: stroke`) under "vault" and "encrypted": the wheel spokes behind them are 1.8:1 and only decorative. Keep the dial from 72rem only and the tall drawing below it, as mocked.
