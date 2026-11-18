@@ -103,4 +103,11 @@ OK: 17 pages at 390, 1024 and 1366, with and without JS
 Contrast (scratchpad contrast-r2.mjs), 15 pages at 1366: every text at least 4.5:1 (3:1 large); every focus ring at least 3:1.
 ```
 
-check-commits and role-scope, after the commit: see the commit's hand-over to the conductor (both printed OK; output below).
+After the build commit (eced593):
+
+```
+$ node scripts/check-commits.mjs origin/dev HEAD
+OK (4 commits checked, 0 exempted, 0 older than the check skipped)
+$ node scripts/role-scope.mjs origin/dev HEAD
+OK (4 commit(s) checked against team/scopes.json)
+```
