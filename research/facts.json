@@ -57,31 +57,35 @@
  },
  {
   "id": "F09",
-  "claim": "Long bio (needs his approval): since September 2024 an independent AI advisor through DxSure Ltd, combining advisory, solution architecture and hands-on agentic builds.",
+  "claim": "Since September 2024 he has been an independent AI advisor through DxSure Ltd, combining advisory, solution architecture and hands-on agentic builds. (Long bio; the source marks it as drafted for the provider to approve; cleared for this site by Dinis Cruz.)",
   "quote": "Since September 2024 he has worked as an independent AI advisor through DxSure Ltd. His work there combines advisory, solution architecture and hands-on agentic builds: multi-agent orchestration, RAG, MCP and AI security.",
   "url": "https://ruv.sgit.ai/data/providers.json",
-  "read": "2026-11-18"
+  "read": "2026-11-18",
+  "cleared": "Dinis Cruz, 2026-11-18, about 10:50 UTC: 'Yes the site can use that longer bio from ruv.sgit' (team/WORKFLOW.md)"
  },
  {
   "id": "F10",
-  "claim": "Long bio (needs his approval): career from HSBC Global Technology, an MBA at London Business School, Shell Energy, TalkTalk, Zafin, Jaguar Land Rover and Lotus Technology.",
+  "claim": "His career runs from HSBC Global Technology, through an MBA at London Business School, to Shell Energy, TalkTalk, Zafin, Jaguar Land Rover and Lotus Technology. (Long bio; the source marks it as drafted for the provider to approve; cleared for this site by Dinis Cruz.)",
   "quote": "He began his career as a software engineer at HSBC Global Technology, working on payments and core banking integration. After an MBA at London Business School, he led transformation and delivery work at Shell Energy, TalkTalk and Zafin, the last on core banking SaaS for major banks. Later he worked at Jaguar Land Rover and Lotus Technology on portfolio rationalisation, cloud foundations and connected experiences.",
   "url": "https://ruv.sgit.ai/data/providers.json",
-  "read": "2026-11-18"
+  "read": "2026-11-18",
+  "cleared": "Dinis Cruz, 2026-11-18, about 10:50 UTC: 'Yes the site can use that longer bio from ruv.sgit' (team/WORKFLOW.md)"
  },
  {
   "id": "F11",
-  "claim": "Long bio (needs his approval): mentors on the Johns Hopkins Agentic AI programme.",
+  "claim": "He mentors on the Johns Hopkins Agentic AI programme. (Long bio; the source marks it as drafted for the provider to approve; cleared for this site by Dinis Cruz.)",
   "quote": "He co-founded the Agentics Foundation's London chapter, which runs the city's agentic AI meetups, and mentors on the Johns Hopkins Agentic AI programme.",
   "url": "https://ruv.sgit.ai/data/providers.json",
-  "read": "2026-11-18"
+  "read": "2026-11-18",
+  "cleared": "Dinis Cruz, 2026-11-18, about 10:50 UTC: 'Yes the site can use that longer bio from ruv.sgit' (team/WORKFLOW.md)"
  },
  {
   "id": "F12",
-  "claim": "Long bio (needs his approval): co-presented the keynote 'Securing the Agentic Frontier' at the CISO London Summit 2025.",
+  "claim": "He co-presented the keynote 'Securing the Agentic Frontier' at the CISO London Summit 2025. (Long bio; the source marks it as drafted for the provider to approve; cleared for this site by Dinis Cruz.)",
   "quote": "At the CISO London Summit 2025 he co-presented the keynote \"Securing the Agentic Frontier\", applying the OWASP MAESTRO threat-modelling framework to an agentic AI codebase.",
   "url": "https://ruv.sgit.ai/data/providers.json",
-  "read": "2026-11-18"
+  "read": "2026-11-18",
+  "cleared": "Dinis Cruz, 2026-11-18, about 10:50 UTC: 'Yes the site can use that longer bio from ruv.sgit' (team/WORKFLOW.md)"
  },
  {
   "id": "F13",
@@ -92,10 +96,11 @@
  },
  {
   "id": "F14",
-  "claim": "His listed specialisms.",
+  "claim": "His listed specialisms. (Long bio; the source marks it as drafted for the provider to approve; cleared for this site by Dinis Cruz.)",
   "quote": "Agentic AI architecture (multi-agent, RAG, MCP); Agentic AI security and threat modelling (MAESTRO); Enterprise programme delivery and C-suite advisory; Financial services, core banking and payments; Automotive and digital transformation; Cloud platforms (AWS, GCP, Azure); Agentic AI community building",
   "url": "https://ruv.sgit.ai/data/providers.json",
-  "read": "2026-11-18"
+  "read": "2026-11-18",
+  "cleared": "Dinis Cruz, 2026-11-18, about 10:50 UTC: 'Yes the site can use that longer bio from ruv.sgit' (team/WORKFLOW.md)"
  },
  {
   "id": "F15",
