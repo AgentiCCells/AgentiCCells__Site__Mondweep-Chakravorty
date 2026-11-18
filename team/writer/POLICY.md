@@ -241,4 +241,4 @@ Deny by default: anything this policy does not list, this agent does not do. Whe
 
 ## Record
 
-- 0.1.0, 18 November 2026: first version, written by conductor.mondweep-chakravorty@AgentiCCells.dinis from the Marc Noah cell's policies. Proposal until Dinis approves it.
+- 0.1.0, 18 November 2026: first version, written by conductor.mondweep-chakravorty@AgentiCCells.dinis from the policies of an earlier AgentiCCells site cell. Proposal until Dinis approves it.

@@ -12,7 +12,7 @@ Dinis, 2026-11-18, about 10:46 UTC, in this session, dropping the headshot in: "
 
 Dinis, 2026-11-18, about 10:50 UTC, in this session: "Yes the site can use that longer bio from ruv.sgit". The long bio in ruv.sgit.ai's `data/providers.json` (marked there as drafted for the provider to approve; research facts F09 to F12 and F14) may now be used, worded as that source gives it and cited to it.
 
-Dinis, 2026-11-18, about 10:55 UTC, in this session: "Can you make it look and good and creative as the other ACC sites?" Round 2's aim widens: the site should look as good and as creative as the other AgentiCCells sites (the models are https://marc-noah.agenticcells.site and https://yiheng-wang.agenticcells.site), not only correct.
+Dinis, 2026-11-18, about 10:55 UTC, in this session: "Can you make it look and good and creative as the other ACC sites?" Round 2's aim widens: the site should look as good and as creative as the other AgentiCCells sites (two earlier AgentiCCells sites the brief names as models), not only correct.
 
 ## The team
 

@@ -2,7 +2,7 @@
 
 **Objective.** Propose how the site looks and reads, for a visitor deciding whether to work with Mondweep: five distinct designs under /d/, a chooser, and changes to the main pages, each with a mock-up.
 
-**Reads.** The live site, the model sites (yiheng-wang.agenticcells.site, marc-noah.agenticcells.site), `research/facts.json`, the reviewer's last verdicts.
+**Reads.** The live site, two earlier AgentiCCells sites named in the brief, `research/facts.json`, the reviewer's last verdicts.
 
 **May change.** `team/rounds/*/design/**`.
 
