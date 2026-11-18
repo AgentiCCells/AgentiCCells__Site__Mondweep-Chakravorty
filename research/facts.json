@@ -516,5 +516,370 @@
   "quote": "This opt-in community example connects an Agent Behaviour Policy to a local memory adapter ... This PR changes documentation only; it adds no Ruflo runtime dependencies or defaults.",
   "url": "https://raw.githubusercontent.com/ruvnet/ruflo/main/docs/integrations/sgit-memory-checkpoints.md",
   "read": "2026-11-18"
+ },
+ {
+  "id": "F94",
+  "claim": "Task runs, as offers.json describes each size: Small run, a queen and up to 5 workers; Team run, up to 10 workers; Large run, up to 20 workers.",
+  "quote": "\"name\": \"Small run\" ... \"summary\": \"A queen and up to 5 workers for a focused task.\" ... \"name\": \"Team run\" ... \"summary\": \"A queen and up to 10 workers: the size of our own site-building runs.\" ... \"name\": \"Large run\" ... \"summary\": \"A queen and up to 20 workers for a big task.\"",
+  "url": "https://ruv.sgit.ai/data/offers.json",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F95",
+  "claim": "Dedicated compute, as offers.json describes each size: Small instance t3.medium (2 vCPU, 4 GiB), Medium instance m7i.xlarge (4 vCPU, 16 GiB), GPU instance g5.xlarge (4 vCPU, 16 GiB, 1 NVIDIA A10G).",
+  "quote": "\"name\": \"Small instance\" ... \"summary\": \"t3.medium: 2 vCPU, 4 GiB memory.\" ... \"name\": \"Medium instance\" ... \"summary\": \"m7i.xlarge: 4 vCPU, 16 GiB memory.\" ... \"name\": \"GPU instance\" ... \"summary\": \"g5.xlarge: 4 vCPU, 16 GiB memory, 1 NVIDIA A10G.\"",
+  "url": "https://ruv.sgit.ai/data/offers.json",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F96",
+  "claim": "Maintained repository, as offers.json describes each tier: Individual, Team, White-label ready.",
+  "quote": "\"name\": \"Individual\" ... \"summary\": \"One private repository for one person, kept current.\" ... \"name\": \"Team\" ... \"summary\": \"One repository for a team, with your branding and a better UI.\" ... \"name\": \"White-label ready\" ... \"summary\": \"Ready to offer to your own clients under your name.\"",
+  "url": "https://ruv.sgit.ai/data/offers.json",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F97",
+  "claim": "Expert time, as offers.json describes each option: about 2 hours, a working day, or four working days.",
+  "quote": "\"name\": \"A couple of hours\" ... \"summary\": \"About 2 hours: scope a task, steer a few runs, review what came back.\" ... \"name\": \"A day\" ... \"summary\": \"A working day: design a run pipeline, a behaviour policy, or a pilot.\" ... \"name\": \"Several days\" ... \"summary\": \"Four working days: set ruv.sgit up in your environment and hand it over.\"",
+  "url": "https://ruv.sgit.ai/data/offers.json",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F98",
+  "claim": "His provider page describes how an engagement starts and what every job is.",
+  "quote": "Most clients start small and stop at any step. Every job is a ruv.sgit run: a written mandate per agent, an encrypted vault per run, a person watching, and the vault handed to you.",
+  "url": "https://ruv.sgit.ai/providers/mondweep-chakravorty.html",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F99",
+  "claim": "His provider page introduces the five kinds of project as packages of the four offers.",
+  "quote": "Five kinds of project, each a package of the offers above. The offers under each are a suggested starting combination, agreed in the first conversation.",
+  "url": "https://ruv.sgit.ai/providers/mondweep-chakravorty.html",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F100",
+  "claim": "His provider page shows no photo: the avatar is his initials, MC.",
+  "quote": "aria-label=\"Mondweep Chakravorty (initials)\"><span aria-hidden=\"true\">MC</span>",
+  "url": "https://ruv.sgit.ai/providers/mondweep-chakravorty.html",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F101",
+  "claim": "The provider page's 'Enquire to book' button writes an email to agent@riskmandate.ai with the subject 'Enquiry: a conversation with Mondweep Chakravorty'.",
+  "quote": "href=\"mailto:agent@riskmandate.ai?subject=Enquiry:%20a%20conversation%20with%20Mondweep%20Chakravorty\">Enquire to book</a>",
+  "url": "https://ruv.sgit.ai/providers/mondweep-chakravorty.html",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F102",
+  "claim": "The ruv.sgit.ai home page: the marketplace starts with two people, and each lists the same four offers at the published prices.",
+  "quote": "The marketplace starts with two people. Each lists the same four offers at the published prices.",
+  "url": "https://ruv.sgit.ai/",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F103",
+  "claim": "ruv.sgit.ai says of itself that it is not rUv's offer and does not speak for him or for the Agentics Foundation.",
+  "quote": "This is not rUv's offer, and it does not speak for him or for the Agentics Foundation.",
+  "url": "https://ruv.sgit.ai/",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F104",
+  "claim": "What Dinis Cruz's talk showed, as the ruv.sgit.ai home page puts it: a Ruflo hive, sgit vaults and Agent Behaviour Policies as one workflow, ruv.sgit.",
+  "quote": "Dinis Cruz's talk at the London Agentics meetup, after rUv's keynote: a Ruflo hive, sgit vaults and Agent Behaviour Policies, shown as one workflow, ruv.sgit.",
+  "url": "https://ruv.sgit.ai/",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F105",
+  "claim": "What the ruv.sgit service is, as llms.txt puts it: agent work by a Ruflo hive under a written mandate, a vault per job that the client keeps, delivered by named providers through a small marketplace.",
+  "quote": "the ruv.sgit service: agent work done by a Ruflo hive under a written mandate per role, with a vault per job that the client keeps, delivered by named providers through a small marketplace that starts with two founding providers, Dinis Cruz and Mondweep Chakravorty.",
+  "url": "https://ruv.sgit.ai/llms.txt",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F106",
+  "claim": "Two of ruv.sgit.ai's published rules: revenue is split equally after direct costs, and whoever has the client bills.",
+  "quote": "An equal split. ... Revenue is split equally between the parties, after direct costs are reimbursed to whoever paid them. ... Whoever has the client bills.",
+  "url": "https://ruv.sgit.ai/",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F107",
+  "claim": "Article No. 9 on ruv.sgit.ai records the decisions of 21 October 2026: Mondweep's card goes live, and the cards say 'enquire to book', not 'register interest'.",
+  "quote": "Approved on 21 October 2026 and built the same day ... Mondweep is live. He has agreed, and his consent is recorded ... Enquire to book, not register interest",
+  "url": "https://ruv.sgit.ai/articles/next-phase.md",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F108",
+  "claim": "The address of his video, as the newsroom links it.",
+  "quote": "SGit × Ruflo | Working Proof of Concept](https://youtu.be/rkh6BJiaIrQ), published on YouTube on 17 October 2026",
+  "url": "https://newsroom.sgit.ai/articles/what-if-an-agent-loses-its-workspace.md",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F109",
+  "claim": "How each slide of his video is laid out: the story on the left for someone with no code knowledge, the terminal on the right.",
+  "quote": "Each slide has the story on the left, for someone with no code knowledge, and the terminal on the right, labelled as an actual capture of the run.",
+  "url": "https://newsroom.sgit.ai/articles/what-if-an-agent-loses-its-workspace.md",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F110",
+  "claim": "In his code the policy rows are compiled into Ruflo rules and every tool call is checked by a pinned copy of Ruflo's own policy evaluator, in enforce mode.",
+  "quote": "In the code, the rows are compiled into Ruflo rules when the server starts, and every tool call is checked by a pinned copy of Ruflo's own policy evaluator, in enforce mode.",
+  "url": "https://newsroom.sgit.ai/articles/what-if-an-agent-loses-its-workspace.md",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F111",
+  "claim": "Step 1 of the run, at 0:09 in the video: the pinned Ruflo version is v3.56.10.",
+  "quote": "1 · A real, pinned runtime ... At 0:09, ruflo --version returns v3.56.10",
+  "url": "https://newsroom.sgit.ai/articles/what-if-an-agent-loses-its-workspace.md",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F112",
+  "claim": "Step 2 of the run, at 0:14 in the video: the four policy rows (the mandate).",
+  "quote": "2 · Define the mandate ... At 0:14, four Agent Behaviour Policy rows, all scoped to the project",
+  "url": "https://newsroom.sgit.ai/articles/what-if-an-agent-loses-its-workspace.md",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F113",
+  "claim": "Step 3 of the run, at 0:21 in the video: Ruflo's command line stores two synthetic facts about Kestrel.",
+  "quote": "At 0:21, Ruflo's own command line stores two synthetic facts, with embeddings switched off: \"Kestrel vehicles may charge only between 01:00 and 04:00 UTC\", and \"Kestrel checkpoints are retained for seven days\".",
+  "url": "https://newsroom.sgit.ai/articles/what-if-an-agent-loses-its-workspace.md",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F114",
+  "claim": "Step 4 of the run, at 0:32 in the video: a request outside the agent's permission is refused with a PermissionError and no checkpoint file is written.",
+  "quote": "At 0:32, the run asks the adapter to checkpoint a namespace called forbidden. It is refused with a PermissionError, and checkpoint_files is 0: nothing was written.",
+  "url": "https://newsroom.sgit.ai/articles/what-if-an-agent-loses-its-workspace.md",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F115",
+  "claim": "Step 5 of the run, at 0:38 in the video: the checkpoint is saved with three fingerprints, of the database, the ABP and the compiled policy.",
+  "quote": "At 0:38, the checkpoint for the project namespace is allowed. ... records three fingerprints: of the database, of the ABP and of the compiled policy.",
+  "url": "https://newsroom.sgit.ai/articles/what-if-an-agent-loses-its-workspace.md",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F116",
+  "claim": "Step 6 of the run, at 0:45 in the video: a deletion that needs approval stops with a PermissionError, and the checkpoint is retained.",
+  "quote": "At 0:45, the run tries to close the run, which would delete memory. That row says approval, and none is supplied, so it stops with a PermissionError and checkpoint_retained: true.",
+  "url": "https://newsroom.sgit.ai/articles/what-if-an-agent-loses-its-workspace.md",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F117",
+  "claim": "Step 7 of the run, at 0:51 in the video: the test project is deleted; the loss is real.",
+  "quote": "At 0:51, the disposable test project is deleted: source_project_exists: false, original_database_exists: false. The loss is real, not simulated.",
+  "url": "https://newsroom.sgit.ai/articles/what-if-an-agent-loses-its-workspace.md",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F118",
+  "claim": "Step 8 of the run, at 0:58 in the video: a brand-new process restores the checkpoint, and the database's SHA-256 is the same as in step 5 (hash value left out here).",
+  "quote": "At 0:58, a brand-new MCP server process restores the checkpoint into a workspace called fresh-runner. ... the same as in step 5, and matches_checkpoint is true.",
+  "url": "https://newsroom.sgit.ai/articles/what-if-an-agent-loses-its-workspace.md",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F119",
+  "claim": "Step 9 of the run, at 1:04 in the video: Ruflo itself reads both facts back, matching exactly.",
+  "quote": "At 1:04, Ruflo itself, not the adapter, reads the restored memory. Both facts come back word for word: \"PASS: both values match the CLI-written facts exactly.\"",
+  "url": "https://newsroom.sgit.ai/articles/what-if-an-agent-loses-its-workspace.md",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F120",
+  "claim": "Step 10 of the run, at 1:14 in the video: a key that was never stored is not found.",
+  "quote": "At 1:14, a key that was never stored is looked up: \"Key not found: never-stored\", exit 1.",
+  "url": "https://newsroom.sgit.ai/articles/what-if-an-agent-loses-its-workspace.md",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F121",
+  "claim": "Step 11 of the run, at 1:20 in the video: an altered checkpoint fails to restore with a ValueError and no workspace is created; integrity fails closed.",
+  "quote": "At 1:20, one encrypted checkpoint object is altered and a restore is tried into a workspace called tampered. It fails with a ValueError, and tampered_workspace_created is false. Integrity fails closed.",
+  "url": "https://newsroom.sgit.ai/articles/what-if-an-agent-loses-its-workspace.md",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F122",
+  "claim": "Step 12 of the run, at 1:26 in the video: the acceptance summary (see F55).",
+  "quote": "At 1:26, the acceptance summary: exact recall PASS 2/2",
+  "url": "https://newsroom.sgit.ai/articles/what-if-an-agent-loses-its-workspace.md",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F123",
+  "claim": "The three safeguards, in the article's short form.",
+  "quote": "Three safeguards held. Out of scope refused, deletion without approval stopped, tampered copy rejected.",
+  "url": "https://newsroom.sgit.ai/articles/what-if-an-agent-loses-its-workspace.md",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F124",
+  "claim": "What the article says it does not claim: a proof of concept, not a product; synthetic facts (Kestrel is a test name); the code was read, not run, by the newsroom.",
+  "quote": "the code was read, not run, by this site. ... A proof of concept, not a product. ... The facts are synthetic. Kestrel is a test name, not a real fleet.",
+  "url": "https://newsroom.sgit.ai/articles/what-if-an-agent-loses-its-workspace.md",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F125",
+  "claim": "Why three steps of twelve is the right shape for a recovery copy; Ruflo knows nothing about the vault.",
+  "quote": "A recovery copy should be touched when you save and when you restore, and otherwise left alone. ... Ruflo knows nothing about the vault.",
+  "url": "https://newsroom.sgit.ai/articles/when-is-the-vault-actually-used.md",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F126",
+  "claim": "Which steps pass the policy gate (4, 5, 6, 8 and 11, all as the policy said) and which reach memory through Ruflo's own command line without it (3, 9 and 10).",
+  "quote": "In the video those checks cover steps 4, 5, 6, 8 and 11, and every one behaved as the policy said. But in steps 3, 9 and 10, Ruflo's own command line writes and reads the same SQLite memory file directly, and that path does not pass the gate.",
+  "url": "https://newsroom.sgit.ai/articles/the-policy-guards-the-door.md",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F127",
+  "claim": "His README lists native plugin registration among its follow-ups, so the command line's memory calls are checked too.",
+  "quote": "Mondweep's README lists it among the follow-ups: \"native plugin registration\", alongside remote sync, key rotation and multi-tenant isolation.",
+  "url": "https://newsroom.sgit.ai/articles/the-policy-guards-the-door.md",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F128",
+  "claim": "Per the newsroom, Mondweep opened pull request #4239 at 23:02 London time on 16 October 2026, the night before the merge.",
+  "quote": "Mondweep Chakravorty opened it at 23:02 the night before.",
+  "url": "https://newsroom.sgit.ai/articles/our-first-pr-in-ruflo.md",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F129",
+  "claim": "Checked with git: the three commits of pull request #4239, their exact times (London) and author; the head is 6b49d58.",
+  "quote": "6b49d585ada5450329793d90b42d6c8c155dbefb 2026-10-16T23:59:52+01:00 Mondweep Chakravorty | Document passing Ruflo CLI recovery and unresolved embedding persistence; 269b9fc2d7f7d4667736a43c0a32f221c8421643 2026-10-16T23:35:31+01:00 Mondweep Chakravorty | Document ABP compilation and enforced memory adapter operations; 81e3697f11f19bbc5efdfa2b85e083810d156682 2026-10-16T23:02:02+01:00 Mondweep Chakravorty | Document external SGit memory checkpoint MCP example",
+  "url": "https://github.com/ruvnet/ruflo (anonymous git: ls-remote and fetch of refs/pull/4239/head)",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F130",
+  "claim": "The merged page's title, and its one-line flow, with Ruflo's evaluator in enforce mode.",
+  "quote": "# External SGit memory checkpoints governed by an ABP ... ABP mandate → strict compiler → Ruflo evaluator (enforce mode) → adapter operation → SGit encrypted vault.",
+  "url": "https://raw.githubusercontent.com/ruvnet/ruflo/main/docs/integrations/sgit-memory-checkpoints.md",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F131",
+  "claim": "Newsroom Article No. 142, by Dinis Cruz, dated 2026-10-16: its full title.",
+  "quote": "# Agentics, ready to sell: what we showed at Agentic Engineering Live, who else is selling agentic services and at what price, the engagement path, and a marketplace for the consultants who deliver it ... By Dinis Cruz · 2026-10-16 ... Article No. 142",
+  "url": "https://newsroom.sgit.ai/articles/agentics-ready-to-sell.md",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F132",
+  "claim": "Newsroom Article No. 163, by Dinis Cruz, dated 2026-10-17: its full title.",
+  "quote": "# The policy guards the door; the command line uses the window: in the SGit × Ruflo run, the ABP is compiled into Ruflo's own rules and enforced on the adapter's tools, while Ruflo's command line reaches the same memory file without it, as the author's own README says ... By Dinis Cruz · 2026-10-17 ... Article No. 163",
+  "url": "https://newsroom.sgit.ai/articles/the-policy-guards-the-door.md",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F133",
+  "claim": "Newsroom Article No. 164, by Dinis Cruz, dated 2026-10-17: its full title.",
+  "quote": "# What if an agent loses its workspace? Mondweep Chakravorty's SGit × Ruflo proof of concept, step by step: memory saved encrypted, the project deleted, the memory back in a fresh process, and three safeguards that held ... By Dinis Cruz · 2026-10-17 ... Article No. 164",
+  "url": "https://newsroom.sgit.ai/articles/what-if-an-agent-loses-its-workspace.md",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F134",
+  "claim": "Newsroom Article No. 165, by Dinis Cruz, dated 2026-10-17: its full title.",
+  "quote": "# When is the vault actually used? In Mondweep Chakravorty's SGit × Ruflo run, the encrypted vault is written or read in three steps of twelve, on one machine, inside the adapter, and why that is the honest shape of a recovery copy ... By Dinis Cruz · 2026-10-17 ... Article No. 165",
+  "url": "https://newsroom.sgit.ai/articles/when-is-the-vault-actually-used.md",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F135",
+  "claim": "Newsroom Article No. 166, by Dinis Cruz, dated 2026-10-17: its full title.",
+  "quote": "# Who will fix your mess? An answer to HBR's \"deployment gap\" from what this site has already published: explorers, villagers and town planners, a record of what the agents built, and open source so the answer never depends on one partner ... By Dinis Cruz · 2026-10-17 ... Article No. 166",
+  "url": "https://newsroom.sgit.ai/articles/who-will-fix-your-mess.md",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F136",
+  "claim": "Newsroom Article No. 169, by Dinis Cruz, dated 2026-10-17: its full title.",
+  "quote": "# Our first PR in Ruflo: an ABP-governed SGit page, merged into ruvnet/ruflo, and the four pieces that got it there ... By Dinis Cruz · 2026-10-17 ... Article No. 169",
+  "url": "https://newsroom.sgit.ai/articles/our-first-pr-in-ruflo.md",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F137",
+  "claim": "Newsroom Article No. 172, by Dinis Cruz, dated 2026-10-17: its full title.",
+  "quote": "# Three decisions, mapped: an agent's memory, this newsroom's release and a customer refund, through behaviour, decision and workflow ... By Dinis Cruz · 2026-10-17 ... Article No. 172",
+  "url": "https://newsroom.sgit.ai/articles/three-decisions-mapped.md",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F138",
+  "claim": "Newsroom Article No. 173, by Dinis Cruz, dated 2026-10-17: its full title.",
+  "quote": "# Three policies for an agent: behaviour says what it may do, decision says who chooses, workflow says in what order ... By Dinis Cruz · 2026-10-17 ... Article No. 173",
+  "url": "https://newsroom.sgit.ai/articles/three-policies-for-an-agent.md",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F139",
+  "claim": "Newsroom Article No. 175, by Dinis Cruz, dated 2026-10-18: its full title. The words left out name a person this site does not name; the site may use 'Allowed is not right', the title's opening words.",
+  "quote": "# Allowed is not right: an answer to ... Northstar, with three policies and a twin you can run ... By Dinis Cruz · 2026-10-18 ... Article No. 175",
+  "url": "https://newsroom.sgit.ai/articles/allowed-is-not-right.md",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F140",
+  "claim": "Newsroom Article No. 178, by Dinis Cruz, dated 2026-10-18: its full title.",
+  "quote": "# What can your agent reach? RiskMandate and the Agent Behaviour Policy, explained for the person who has to decide ... By Dinis Cruz · 2026-10-18 ... Article No. 178",
+  "url": "https://newsroom.sgit.ai/articles/what-can-your-agent-reach.md",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F141",
+  "claim": "Newsroom Article No. 193, by Dinis Cruz, dated 2026-10-18: its full title.",
+  "quote": "# The Librarian's daily brief: everything that happened in my universe yesterday, the threads I left, and where my leverage is today ... By Dinis Cruz · 2026-10-18 ... Article No. 193",
+  "url": "https://newsroom.sgit.ai/articles/the-librarians-daily-brief.md",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F142",
+  "claim": "Article No. 173 uses his ABP for SGit memory checkpoints, merged into Ruflo's docs, as its example.",
+  "quote": "A good example is in a page that went into Ruflo's docs today, Mondweep Chakravorty's ABP for SGit memory checkpoints.",
+  "url": "https://newsroom.sgit.ai/articles/three-policies-for-an-agent.md",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F143",
+  "claim": "Article No. 175: in the SGit × Ruflo run he compiled an ABP into Ruflo's own rules and checked them in enforce mode, outside the agent.",
+  "quote": "And in the SGit × Ruflo run, Mondweep Chakravorty compiled an ABP into Ruflo's own rules and checked them in enforce mode, outside the agent.",
+  "url": "https://newsroom.sgit.ai/articles/allowed-is-not-right.md",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F144",
+  "claim": "Article No. 193 names his pull request to Ruflo as the kind of outside contribution Dinis Cruz wants to see.",
+  "quote": "And the outside contributions I want to see, like Mondweep's pull request to Ruflo.",
+  "url": "https://newsroom.sgit.ai/articles/the-librarians-daily-brief.md",
+  "read": "2026-11-18"
+ },
+ {
+  "id": "F145",
+  "claim": "Count by this site: on 18 November 2026, 11 of the 470 newsroom articles name Mondweep in their body (Nos. 142, 163, 164, 165, 166, 169, 172, 173, 175, 178, 193, dated 16 to 18 October 2026, all by Dinis Cruz). Six more name him only in their Threads link lists and are not counted.",
+  "quote": "(count by this site, not a quote) 470 articles in https://newsroom.sgit.ai/articles/ on 2026-11-18; the .md twin of each fetched (all HTTP 200) and searched for \"Mondweep\" or \"Chakravorty\" above its \"## Threads\" heading: 11 match; 6 more match only below it.",
+  "url": "https://newsroom.sgit.ai/articles/",
+  "read": "2026-11-18",
+  "kind": "count by this site"
  }
 ]
