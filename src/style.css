@@ -1,0 +1,24 @@
+/* Mondweep Chakravorty site. Code Apache-2.0. */
+:root{--bg:#fbf7f0;--fg:#222;--muted:#666;--line:#e3dccf;--accent:#1f5f74;--card:#fff}
+@media(prefers-color-scheme:dark){:root{--bg:#17140f;--fg:#eee;--muted:#aaa;--line:#3a342b;--accent:#7cc3d8;--card:#1f1b15}}
+*{box-sizing:border-box}
+body{margin:0;font:18px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--fg)}
+a{color:var(--accent)}
+header.site{border-bottom:1px solid var(--line)}
+header.site .wrap{display:flex;flex-wrap:wrap;gap:.5rem 1.25rem;align-items:baseline;padding:1rem}
+header.site .name{font-weight:700;text-decoration:none;color:var(--fg)}
+header.site nav{display:flex;flex-wrap:wrap;gap:.25rem 1rem;font-size:.95rem}
+header.site nav a{text-decoration:none}
+header.site nav a[aria-current="page"]{text-decoration:underline;font-weight:600}
+.wrap{max-width:44rem;margin:0 auto}
+main{padding:2rem 1rem 3rem}
+h1{font-size:2.1rem;line-height:1.2;margin:.5rem 0 1rem}
+h2{font-size:1.35rem;margin-top:2.25rem}
+.lede{font-size:1.2rem}
+.muted{color:var(--muted);font-size:.9rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:.5rem;padding:1rem 1.25rem;margin:1rem 0}
+.card h2,.card h3{margin-top:0}
+.source{font-size:.9rem;color:var(--muted)}
+.placeholder{border:1px dashed var(--muted);border-radius:.4rem;padding:.5rem .75rem;color:var(--muted);font-size:.95rem}
+.cta{display:inline-block;padding:.55rem 1rem;border-radius:.4rem;background:var(--accent);color:var(--bg);text-decoration:none;font-weight:600}
+footer{border-top:1px solid var(--line);padding:1rem}

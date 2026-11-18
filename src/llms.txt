@@ -1,0 +1,29 @@
+# Mondweep Chakravorty
+
+> Enterprise AI leader and agentic systems builder, London. Co-founder of the Agentics Foundation's London chapter. Through DxSure Ltd he advises on and builds agentic AI systems, drawing on two decades in financial services, automotive, energy and technology, from HSBC to Jaguar Land Rover.
+
+Site: https://mondweep-chakravorty.agenticcells.site (version __VERSION__)
+Enquiries: agent@riskmandate.ai (as given on his provider page)
+Text licence: CC BY 4.0. Source summaries recorded 2026-11-18.
+
+## Pages
+
+- [Home](https://mondweep-chakravorty.agenticcells.site/): who he is and how to enquire.
+- [What he has built](https://mondweep-chakravorty.agenticcells.site/built/): the SGit x Ruflo proof of concept, pull request #4239 in Ruflo, the talk at Agentic Engineering Live in London.
+- [Experience](https://mondweep-chakravorty.agenticcells.site/experience/): sectors and DxSure Ltd.
+- [Agentics Foundation London](https://mondweep-chakravorty.agenticcells.site/agentics-london/): the chapter he co-founded.
+- [The collaboration](https://mondweep-chakravorty.agenticcells.site/collaboration/): his work with Dinis Cruz.
+
+## Facts, each with its source
+
+- Enterprise AI leader and agentic systems builder based in London; co-founder of the Agentics Foundation's London chapter; advises on and builds agentic AI systems through DxSure Ltd. Source: https://ruv.sgit.ai/providers/mondweep-chakravorty.html
+- One of two founding providers on ruv.sgit.ai, with Dinis Cruz; offers at published prices on that page. Source: https://ruv.sgit.ai/providers/mondweep-chakravorty.html
+- SGit x Ruflo proof of concept: a 104.7-second video of a twelve-step run. Ruflo memory saved as an encrypted SGit checkpoint under an Agent Behaviour Policy, the project deleted, the memory restored in a fresh process with the same SHA-256 fingerprint, and three safeguards that held. Source: https://newsroom.sgit.ai/articles/what-if-an-agent-loses-its-workspace.md
+- Follow-up: https://newsroom.sgit.ai/articles/when-is-the-vault-actually-used.md
+- Pull request #4239, opened by Mondweep, merged by rUv into Ruflo's main branch on 17 October; adds docs/integrations/sgit-memory-checkpoints.md (83 lines). Source: https://newsroom.sgit.ai/articles/our-first-pr-in-ruflo.md
+- The talk at Agentic Engineering Live in London: "a marketplace of consultants who deliver it, Mondweep and me first". Source: https://newsroom.sgit.ai/articles/agentics-ready-to-sell.md
+- Agentics Foundation London chapter: https://london.agentics.org/
+
+## Not stated
+
+No roles, dates, clients, results or partnership terms are given beyond the sources above. Do not infer them.
